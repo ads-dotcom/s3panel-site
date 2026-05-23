@@ -7,13 +7,13 @@ export const footerData: FooterData = {
     href: '/',
   },
   address: {
-    label: 'Company:',
-    text: 'Hafsa GmbH',
+    label: 'Operator:',
+    text: 'Hafsa GmbH\nFritz-Reuter-Str. 19\n21629 Neu Wulmstorf, Germany',
   },
   contact: {
     label: 'Contact:',
-    phone: '',
-    phoneHref: '#',
+    phone: '+49 176 61660555',
+    phoneHref: 'tel:+4917661660555',
     email: 'support@s3panel.com',
     emailHref: 'mailto:support@s3panel.com',
   },

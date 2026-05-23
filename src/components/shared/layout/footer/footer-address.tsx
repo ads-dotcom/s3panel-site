@@ -9,7 +9,9 @@ const FooterAddress = ({
     <div className="space-y-6">
       <div>
         <p className="text-tagline-2 text-background-11 mb-1 font-semibold">{address.label}</p>
-        <p className="text-tagline-3 font-normal text-white/50">{address.text}</p>
+        <p className="text-tagline-3 whitespace-pre-line font-normal text-white/50">
+          {address.text}
+        </p>
       </div>
       <div>
         <p className="text-tagline-2 text-background-11 mb-1 font-semibold">{contact.label}</p>

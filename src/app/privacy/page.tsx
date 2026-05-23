@@ -49,7 +49,8 @@ export default function PrivacyPage() {
       </p>
       <h2>Contact</h2>
       <p>
-        For privacy questions, contact <a href="mailto:support@s3panel.com">support@s3panel.com</a>.
+        For privacy questions, contact <a href="mailto:support@s3panel.com">support@s3panel.com</a>{' '}
+        or Hafsa GmbH, Fritz-Reuter-Str. 19, 21629 Neu Wulmstorf, Germany.
       </p>
     </DocumentPage>
   );

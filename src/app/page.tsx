@@ -2,18 +2,31 @@ import RevealAnimation from '@/src/components/animation/reveal-animation';
 import { BadgeDefault } from '@/src/components/shared/ui/badge';
 import { LinkPrimary, LinkSecondary } from '@/src/components/shared/ui/button';
 import Image from 'next/image';
+import {
+  siAkamai,
+  siAndroid,
+  siApple,
+  siBackblaze,
+  siCloudflare,
+  siDigitalocean,
+  siHetzner,
+  siMinio,
+  siSafari,
+  siScaleway,
+  siWasabi,
+} from 'simple-icons';
 
 const providers = [
-  { name: 'AWS S3', mark: 'S3', accent: 'bg-[#ff9900]' },
-  { name: 'Cloudflare R2', mark: 'R2', accent: 'bg-[#f38020]' },
-  { name: 'Hetzner Object Storage', mark: 'H', accent: 'bg-[#d50c2d]' },
-  { name: 'MinIO', mark: 'M', accent: 'bg-[#c72e49]' },
-  { name: 'Wasabi', mark: 'W', accent: 'bg-[#01a04b]' },
-  { name: 'DigitalOcean Spaces', mark: 'DO', accent: 'bg-[#0080ff]' },
-  { name: 'Backblaze B2', mark: 'B2', accent: 'bg-[#e21e29]' },
-  { name: 'Scaleway', mark: 'SC', accent: 'bg-[#4f0599]' },
-  { name: 'Linode Object Storage', mark: 'LI', accent: 'bg-[#02b159]' },
-  { name: 'Custom S3 endpoint', mark: '{}', accent: 'bg-background-4' },
+  { name: 'AWS S3', mark: 'S3', color: '#ff9900' },
+  { name: 'Cloudflare R2', icon: siCloudflare, color: `#${siCloudflare.hex}` },
+  { name: 'Hetzner Object Storage', icon: siHetzner, color: `#${siHetzner.hex}` },
+  { name: 'MinIO', icon: siMinio, color: `#${siMinio.hex}` },
+  { name: 'Wasabi', icon: siWasabi, color: `#${siWasabi.hex}` },
+  { name: 'DigitalOcean Spaces', icon: siDigitalocean, color: `#${siDigitalocean.hex}` },
+  { name: 'Backblaze B2', icon: siBackblaze, color: `#${siBackblaze.hex}` },
+  { name: 'Scaleway', icon: siScaleway, color: `#${siScaleway.hex}` },
+  { name: 'Akamai Object Storage', icon: siAkamai, color: `#${siAkamai.hex}` },
+  { name: 'Custom S3 endpoint', mark: '{}', color: '#111827' },
 ];
 
 const services = [
@@ -49,6 +62,38 @@ const services = [
     title: 'Admin and billing',
     text: 'Manage users, plans, lifetime access, subscriptions, events, and app review readiness.',
   },
+  {
+    title: 'Duplicate and clone',
+    text: 'Create same-folder copies without opening a destination dialog, including non-colliding copy names.',
+  },
+  {
+    title: 'Copy to bucket',
+    text: 'Copy files or folders into another prefix or compatible bucket when the credential policy allows it.',
+  },
+  {
+    title: 'Move with folder picker',
+    text: 'Choose a destination bucket and folder before moving large objects or folder prefixes.',
+  },
+  {
+    title: 'Task feedback',
+    text: 'Show clear operation states for upload, copy, move, delete, indexing, and sharing actions.',
+  },
+  {
+    title: 'Share link manager',
+    text: 'Create, copy, review, and revoke temporary public links from the web or native Mac workflow.',
+  },
+  {
+    title: 'ZIP workflows',
+    text: 'Prepare selected files as ZIP downloads and support archive operations for customer storage.',
+  },
+  {
+    title: 'Object properties',
+    text: 'Inspect key, content type, size, ETag, storage class, encryption, and folder metadata.',
+  },
+  {
+    title: 'Bucket browser',
+    text: 'Switch buckets quickly and keep bucket-level navigation separate from object-level actions.',
+  },
 ];
 
 const capabilityCards = [
@@ -75,18 +120,27 @@ const capabilityCards = [
 ];
 
 const platforms = [
-  { name: 'Web App', icon: 'browser', status: 'Available now', href: 'https://app.s3panel.com' },
-  { name: 'macOS', icon: 'mac', status: 'App Store preparation', href: '/downloads' },
-  { name: 'Windows', icon: 'windows', status: 'Planned', href: '/downloads' },
-  { name: 'iOS', icon: 'ios', status: 'Planned', href: '/downloads' },
-  { name: 'Android', icon: 'android', status: 'Planned', href: '/downloads' },
+  { name: 'Web App', icon: siSafari, status: 'Available now', tag: 'Live', href: 'https://app.s3panel.com' },
+  { name: 'macOS', icon: siApple, status: 'TestFlight', tag: 'Beta', href: '/downloads' },
+  { name: 'Windows', icon: 'windows', status: 'Planned', tag: 'Soon', href: '/downloads' },
+  { name: 'iOS', icon: siApple, status: 'Planned', tag: 'Soon', href: '/downloads' },
+  { name: 'Android', icon: siAndroid, status: 'Planned', tag: 'Soon', href: '/downloads' },
 ];
 
 function ProviderBadge({ provider }: { provider: (typeof providers)[number] }) {
   return (
     <div className="flex items-center gap-3">
-      <span className={`flex size-11 shrink-0 items-center justify-center rounded-lg text-sm font-semibold text-white ${provider.accent}`}>
-        {provider.mark}
+      <span
+        className="flex size-11 shrink-0 items-center justify-center rounded-lg text-sm font-semibold text-white"
+        style={{ backgroundColor: provider.color }}
+      >
+        {'icon' in provider && provider.icon ? (
+          <svg viewBox="0 0 24 24" className="size-6 fill-current" aria-hidden>
+            <path d={provider.icon.path} />
+          </svg>
+        ) : (
+          provider.mark
+        )}
       </span>
       <span className="font-inter-tight text-tagline-3 text-background-13/80 text-left">
         {provider.name}
@@ -95,8 +149,15 @@ function ProviderBadge({ provider }: { provider: (typeof providers)[number] }) {
   );
 }
 
-function PlatformMark({ icon }: { icon: string }) {
+function PlatformMark({ icon }: { icon: string | { path: string } }) {
   const common = 'h-11 w-11';
+  if (typeof icon !== 'string') {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d={icon.path} />
+      </svg>
+    );
+  }
   if (icon === 'browser') {
     return (
       <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
@@ -470,16 +531,25 @@ export default function Home() {
               </h2>
             </RevealAnimation>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {platforms.map((platform, index) => (
               <RevealAnimation key={platform.name} delay={0.1 + index * 0.1}>
                 <a
                   href={platform.href}
-                  className={`block rounded-[20px] p-6 transition-transform duration-500 hover:-translate-y-1 ${
+                  className={`relative block rounded-[20px] p-6 text-center transition-transform duration-500 hover:-translate-y-1 ${
                     index === 0 ? 'bg-background-4 text-white' : 'bg-background-9 text-background-13'
                   }`}
                 >
-                  <span className="mb-10 inline-flex rounded-xl bg-white/12 p-3">
+                  <span
+                    className={`absolute top-4 right-4 rounded-full px-2.5 py-1 font-ibm-plex-mono text-[10px] uppercase tracking-[1px] ${
+                      platform.tag === 'Soon'
+                        ? 'bg-amber-300 text-amber-950'
+                        : 'bg-white/14 text-current'
+                    }`}
+                  >
+                    {platform.tag}
+                  </span>
+                  <span className="mx-auto mb-10 inline-flex rounded-xl bg-white/12 p-3">
                     <PlatformMark icon={platform.icon} />
                   </span>
                   <p className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px] opacity-60">

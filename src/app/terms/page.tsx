@@ -41,7 +41,8 @@ export default function TermsPage() {
       </p>
       <h2>Contact</h2>
       <p>
-        For support, contact <a href="mailto:support@s3panel.com">support@s3panel.com</a>.
+        For support, contact <a href="mailto:support@s3panel.com">support@s3panel.com</a>. The
+        operator is Hafsa GmbH, Fritz-Reuter-Str. 19, 21629 Neu Wulmstorf, Germany.
       </p>
     </DocumentPage>
   );

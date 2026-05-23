@@ -17,6 +17,14 @@ export default function ImprintPage() {
       <p>
         Hafsa GmbH
         <br />
+        Fritz-Reuter-Str. 19
+        <br />
+        21629 Neu Wulmstorf
+        <br />
+        Germany
+        <br />
+        Phone <a href="tel:+4917661660555">+49 176 61660555</a>
+        <br />
         Email <a href="mailto:info@hafsa.de">info@hafsa.de</a>
       </p>
       <h2>Support</h2>

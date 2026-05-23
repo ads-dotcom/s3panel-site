@@ -1,6 +1,7 @@
 import RevealAnimation from '@/src/components/animation/reveal-animation';
 import { BadgeDefault } from '@/src/components/shared/ui/badge';
 import type { Metadata } from 'next';
+import { siAndroid, siApple, siSafari } from 'simple-icons';
 
 export const metadata: Metadata = {
   title: 'Downloads',
@@ -8,15 +9,22 @@ export const metadata: Metadata = {
 };
 
 const platforms = [
-  { name: 'Web App', status: 'Available now', href: 'https://app.s3panel.com', badge: 'WEB', icon: 'browser' },
-  { name: 'macOS', status: 'App Store preparation', href: '#', badge: 'MAC', icon: 'mac' },
-  { name: 'Windows', status: 'Planned', href: '#', badge: 'WIN', icon: 'windows' },
-  { name: 'iOS', status: 'Planned', href: '#', badge: 'IOS', icon: 'ios' },
-  { name: 'Android', status: 'Planned', href: '#', badge: 'AND', icon: 'android' },
+  { name: 'Web App', status: 'Available now', href: 'https://app.s3panel.com', badge: 'Live', icon: siSafari },
+  { name: 'macOS', status: 'TestFlight beta', href: '#', badge: 'Beta', icon: siApple },
+  { name: 'Windows', status: 'Planned', href: '#', badge: 'Coming soon', icon: 'windows' },
+  { name: 'iOS', status: 'Planned', href: '#', badge: 'Coming soon', icon: siApple },
+  { name: 'Android', status: 'Planned', href: '#', badge: 'Coming soon', icon: siAndroid },
 ];
 
-function PlatformIcon({ icon }: { icon: string }) {
+function PlatformIcon({ icon }: { icon: string | { path: string } }) {
   const common = 'h-10 w-10';
+  if (typeof icon !== 'string') {
+    return (
+      <svg className={common} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+        <path d={icon.path} />
+      </svg>
+    );
+  }
   if (icon === 'browser') {
     return (
       <svg className={common} viewBox="0 0 40 40" fill="none" aria-hidden>
@@ -79,20 +87,29 @@ export default function DownloadsPage() {
           </RevealAnimation>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mx-auto mt-14 grid max-w-[1180px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {platforms.map((platform, index) => (
             <RevealAnimation key={platform.name} delay={0.1 + index * 0.1}>
               <a
                 href={platform.href}
-                className={`block min-h-[220px] rounded-[20px] p-6 transition-transform duration-500 hover:-translate-y-1 ${
+                className={`relative block min-h-[220px] rounded-[20px] p-6 text-center transition-transform duration-500 hover:-translate-y-1 ${
                   index === 0 ? 'bg-background-4 text-white' : 'bg-background-9 text-background-13'
                 }`}
               >
-                <span className="inline-flex size-14 items-center justify-center rounded-xl bg-white/12">
+                <span
+                  className={`absolute top-4 right-4 rounded-full px-2.5 py-1 font-ibm-plex-mono text-[10px] uppercase tracking-[1px] ${
+                    platform.badge === 'Coming soon'
+                      ? 'bg-amber-300 text-amber-950'
+                      : 'bg-white/14 text-current'
+                  }`}
+                >
+                  {platform.badge}
+                </span>
+                <span className="mx-auto inline-flex size-14 items-center justify-center rounded-xl bg-white/12">
                   <PlatformIcon icon={platform.icon} />
                 </span>
                 <p className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px] opacity-60">
-                  {platform.badge} / {platform.status}
+                  {platform.status}
                 </p>
                 <h2 className="font-manrope mt-16 text-[30px] leading-[1.05] font-medium">
                   {platform.name}
