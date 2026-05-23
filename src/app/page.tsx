@@ -4,16 +4,16 @@ import { LinkPrimary, LinkSecondary } from '@/src/components/shared/ui/button';
 import Image from 'next/image';
 
 const providers = [
-  'AWS S3',
-  'Cloudflare R2',
-  'Hetzner Object Storage',
-  'MinIO',
-  'Wasabi',
-  'DigitalOcean Spaces',
-  'Backblaze B2',
-  'Scaleway',
-  'Linode Object Storage',
-  'Custom S3 endpoint',
+  { name: 'AWS S3', mark: 'S3', accent: 'bg-[#ff9900]' },
+  { name: 'Cloudflare R2', mark: 'R2', accent: 'bg-[#f38020]' },
+  { name: 'Hetzner Object Storage', mark: 'H', accent: 'bg-[#d50c2d]' },
+  { name: 'MinIO', mark: 'M', accent: 'bg-[#c72e49]' },
+  { name: 'Wasabi', mark: 'W', accent: 'bg-[#01a04b]' },
+  { name: 'DigitalOcean Spaces', mark: 'DO', accent: 'bg-[#0080ff]' },
+  { name: 'Backblaze B2', mark: 'B2', accent: 'bg-[#e21e29]' },
+  { name: 'Scaleway', mark: 'SC', accent: 'bg-[#4f0599]' },
+  { name: 'Linode Object Storage', mark: 'LI', accent: 'bg-[#02b159]' },
+  { name: 'Custom S3 endpoint', mark: '{}', accent: 'bg-background-4' },
 ];
 
 const services = [
@@ -32,6 +32,22 @@ const services = [
   {
     title: 'Secure sharing',
     text: 'Create temporary presigned links and keep buckets private while sharing selected files.',
+  },
+  {
+    title: 'Permissions and audit',
+    text: 'Check ACL support, handle read-only credentials safely, and review storage actions from audit logs.',
+  },
+  {
+    title: 'Native macOS workflow',
+    text: 'Browse, preview, search, upload, rename, copy, move, share, and inspect objects from the Mac app.',
+  },
+  {
+    title: 'R2 and custom endpoints',
+    text: 'Use Cloudflare R2, Hetzner, MinIO, Wasabi, Backblaze, and compatible S3 endpoints.',
+  },
+  {
+    title: 'Admin and billing',
+    text: 'Manage users, plans, lifetime access, subscriptions, events, and app review readiness.',
   },
 ];
 
@@ -59,12 +75,68 @@ const capabilityCards = [
 ];
 
 const platforms = [
-  { name: 'Web App', status: 'Available now', href: 'https://app.s3panel.com' },
-  { name: 'macOS', status: 'App Store preparation', href: '/downloads' },
-  { name: 'Windows', status: 'Planned', href: '/downloads' },
-  { name: 'iOS', status: 'Planned', href: '/downloads' },
-  { name: 'Android', status: 'Planned', href: '/downloads' },
+  { name: 'Web App', icon: 'browser', status: 'Available now', href: 'https://app.s3panel.com' },
+  { name: 'macOS', icon: 'mac', status: 'App Store preparation', href: '/downloads' },
+  { name: 'Windows', icon: 'windows', status: 'Planned', href: '/downloads' },
+  { name: 'iOS', icon: 'ios', status: 'Planned', href: '/downloads' },
+  { name: 'Android', icon: 'android', status: 'Planned', href: '/downloads' },
 ];
+
+function ProviderBadge({ provider }: { provider: (typeof providers)[number] }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className={`flex size-11 shrink-0 items-center justify-center rounded-lg text-sm font-semibold text-white ${provider.accent}`}>
+        {provider.mark}
+      </span>
+      <span className="font-inter-tight text-tagline-3 text-background-13/80 text-left">
+        {provider.name}
+      </span>
+    </div>
+  );
+}
+
+function PlatformMark({ icon }: { icon: string }) {
+  const common = 'h-11 w-11';
+  if (icon === 'browser') {
+    return (
+      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
+        <rect x="7" y="9" width="30" height="25" rx="5" stroke="currentColor" strokeWidth="2.5" />
+        <path d="M8 17h28" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="14" cy="13" r="1.5" fill="currentColor" />
+        <circle cx="20" cy="13" r="1.5" fill="currentColor" />
+      </svg>
+    );
+  }
+  if (icon === 'mac') {
+    return (
+      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
+        <rect x="9" y="8" width="26" height="22" rx="4" stroke="currentColor" strokeWidth="2.5" />
+        <path d="M18 36h8M22 30v6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (icon === 'windows') {
+    return (
+      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
+        <path d="M9 12l11-1.5v10.75H9V12ZM24 10l11-1.5v12.75H24V10ZM9 24h11v9.5L9 32V24ZM24 24h11v11.5L24 34V24Z" fill="currentColor" />
+      </svg>
+    );
+  }
+  if (icon === 'ios') {
+    return (
+      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
+        <rect x="13" y="6" width="18" height="32" rx="5" stroke="currentColor" strokeWidth="2.5" />
+        <circle cx="22" cy="33" r="1.5" fill="currentColor" />
+      </svg>
+    );
+  }
+  return (
+    <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
+      <path d="M14 18h16v13a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4V18Z" stroke="currentColor" strokeWidth="2.5" />
+      <path d="M16 15l-3-5M28 15l3-5M13 24h-4M35 24h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 export default function Home() {
   return (
@@ -139,12 +211,10 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
               {providers.map((provider) => (
                 <div
-                  key={provider}
-                  className="border-stroke-3/12 bg-background-9 rounded-lg border px-4 py-5 text-center"
+                  key={provider.name}
+                  className="border-stroke-3/12 bg-background-9 rounded-lg border px-4 py-4"
                 >
-                  <span className="font-inter-tight text-tagline-3 text-background-13/80">
-                    {provider}
-                  </span>
+                  <ProviderBadge provider={provider} />
                 </div>
               ))}
             </div>
@@ -240,12 +310,12 @@ export default function Home() {
                   <figure className="overflow-hidden rounded-[18px] bg-white p-2 shadow-[0px_20px_70px_rgba(0,0,0,0.08)]">
                     <Image
                       src="/images/s3panel/folder-stats.png"
-                    alt="Folder size statistics"
-                    width={2048}
-                    height={1152}
-                    loading="eager"
-                    className="rounded-xl"
-                  />
+                      alt="Folder size statistics"
+                      width={2048}
+                      height={1152}
+                      loading="eager"
+                      className="rounded-xl"
+                    />
                   </figure>
                 </RevealAnimation>
                 <RevealAnimation delay={0.4}>
@@ -409,10 +479,13 @@ export default function Home() {
                     index === 0 ? 'bg-background-4 text-white' : 'bg-background-9 text-background-13'
                   }`}
                 >
+                  <span className="mb-10 inline-flex rounded-xl bg-white/12 p-3">
+                    <PlatformMark icon={platform.icon} />
+                  </span>
                   <p className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px] opacity-60">
                     {platform.status}
                   </p>
-                  <h3 className="font-manrope mt-12 text-[28px] leading-[1.05] font-medium">
+                  <h3 className="font-manrope mt-8 text-[28px] leading-[1.05] font-medium">
                     {platform.name}
                   </h3>
                 </a>
