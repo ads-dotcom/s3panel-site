@@ -39,7 +39,7 @@ const capabilityCards = [
   {
     label: 'Search',
     title: 'Find files without crawling forever',
-    text: 'S3Panel stores object metadata in a manifest so repeated name and key searches are fast.',
+    text: 'S3Panel stores object metadata in a manifest so repeated name and key searches are fast. Optional live content search scans selected files directly from customer storage.',
   },
   {
     label: 'Stats',
@@ -60,10 +60,10 @@ const capabilityCards = [
 
 const platforms = [
   { name: 'Web App', status: 'Available now', href: 'https://app.s3panel.com' },
-  { name: 'macOS', status: 'Coming soon', href: '/downloads' },
-  { name: 'Windows', status: 'Coming soon', href: '/downloads' },
-  { name: 'iOS', status: 'Coming soon', href: '/downloads' },
-  { name: 'Android', status: 'Coming soon', href: '/downloads' },
+  { name: 'macOS', status: 'App Store preparation', href: '/downloads' },
+  { name: 'Windows', status: 'Planned', href: '/downloads' },
+  { name: 'iOS', status: 'Planned', href: '/downloads' },
+  { name: 'Android', status: 'Planned', href: '/downloads' },
 ];
 
 export default function Home() {
@@ -396,7 +396,7 @@ export default function Home() {
             </RevealAnimation>
             <RevealAnimation delay={0.2}>
               <h2 className="font-manrope text-manrope-heading-4 text-background-13/90 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
-                Web today. Native apps next.
+                Web now. macOS prepared. More native apps next.
               </h2>
             </RevealAnimation>
           </div>

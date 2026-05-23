@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 };
 
 const platforms = [
-  { name: 'Web App', status: 'Available now', href: 'https://app.s3panel.com' },
-  { name: 'macOS', status: 'Coming soon', href: '#' },
-  { name: 'Windows', status: 'Coming soon', href: '#' },
-  { name: 'iOS', status: 'Coming soon', href: '#' },
-  { name: 'Android', status: 'Coming soon', href: '#' },
+  { name: 'Web App', status: 'Available now', href: 'https://app.s3panel.com', badge: 'WEB' },
+  { name: 'macOS', status: 'App Store preparation', href: '#', badge: 'MAC' },
+  { name: 'Windows', status: 'Planned', href: '#', badge: 'WIN' },
+  { name: 'iOS', status: 'Planned', href: '#', badge: 'IOS' },
+  { name: 'Android', status: 'Planned', href: '#', badge: 'AND' },
 ];
 
 export default function DownloadsPage() {
@@ -25,13 +25,13 @@ export default function DownloadsPage() {
           </RevealAnimation>
           <RevealAnimation delay={0.2}>
             <h1 className="font-manrope text-manrope-heading-4 text-background-13/90 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
-              Use S3Panel from the web today.
+              Use S3Panel from the web today. macOS is being prepared for App Store release.
             </h1>
           </RevealAnimation>
           <RevealAnimation delay={0.3}>
             <p className="font-inter-tight text-tagline-1 text-background-13/60 mx-auto mt-5 max-w-[720px]">
-              Native macOS, Windows, iOS, and Android apps are planned. The web app is available
-              now at app.s3panel.com.
+              The web app is available now at app.s3panel.com. The native macOS app is prepared
+              for App Store distribution; Windows, iOS, and Android are planned next.
             </p>
           </RevealAnimation>
         </div>
@@ -45,10 +45,13 @@ export default function DownloadsPage() {
                   index === 0 ? 'bg-background-4 text-white' : 'bg-background-9 text-background-13'
                 }`}
               >
+                <span className="inline-flex h-11 min-w-11 items-center justify-center rounded-md bg-white/12 px-3 font-ibm-plex-mono text-tagline-4">
+                  {platform.badge}
+                </span>
                 <p className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px] opacity-60">
                   {platform.status}
                 </p>
-                <h2 className="font-manrope mt-24 text-[30px] leading-[1.05] font-medium">
+                <h2 className="font-manrope mt-16 text-[30px] leading-[1.05] font-medium">
                   {platform.name}
                 </h2>
               </a>

@@ -23,8 +23,8 @@ const FooterForm = () => {
         </SubmitSecondary>
       </form>
       <p className="text-tagline-4 font-normal text-white/60">
-        By subscribing you agree to with our{' '}
-        <Link href="#" className="font-medium text-white hover:underline">
+        By subscribing you agree to our{' '}
+        <Link href="/privacy" className="font-medium text-white hover:underline">
           Privacy Policy
         </Link>
       </p>

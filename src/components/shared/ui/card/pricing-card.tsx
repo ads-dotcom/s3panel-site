@@ -14,6 +14,7 @@ export interface PricingCardProps {
 
 const PricingCard: FC<PricingCardProps> = ({ plan, isYearly, className }) => {
   const { name, monthlyPrice, yearlyPrice, featured, ctaHref, ctaLabel = 'Get Started' } = plan;
+  const isLifetime = plan.id === 'lifetime';
 
   return (
     <div
@@ -51,7 +52,7 @@ const PricingCard: FC<PricingCardProps> = ({ plan, isYearly, className }) => {
               featured ? 'text-white/90' : 'text-background-13'
             )}
           >
-            <span className="sr-only">Price: </span>${monthlyPrice}
+            <span className="sr-only">Price: </span>EUR {monthlyPrice}
           </h4>
           <p
             className={cn(
@@ -59,7 +60,7 @@ const PricingCard: FC<PricingCardProps> = ({ plan, isYearly, className }) => {
               featured ? 'text-white/60' : 'text-background-13/60'
             )}
           >
-            Per month
+            {isLifetime ? 'One-time' : 'Per month'}
           </p>
         </div>
         <div className={cn('yearly', isYearly ? 'block' : 'hidden')} aria-live="polite">
@@ -69,7 +70,7 @@ const PricingCard: FC<PricingCardProps> = ({ plan, isYearly, className }) => {
               featured ? 'text-white/90' : 'text-background-13'
             )}
           >
-            <span className="sr-only">Price: </span>${yearlyPrice}
+            <span className="sr-only">Price: </span>EUR {yearlyPrice}
           </h4>
           <p
             className={cn(
@@ -77,7 +78,7 @@ const PricingCard: FC<PricingCardProps> = ({ plan, isYearly, className }) => {
               featured ? 'text-white/60' : 'text-background-13/60'
             )}
           >
-            Per year
+            {isLifetime ? 'One-time' : 'Per year'}
           </p>
         </div>
       </div>
