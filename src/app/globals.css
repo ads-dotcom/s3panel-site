@@ -1,0 +1,33 @@
+@import '../styles/variable';
+@import '../styles/common';
+@import '../styles/typography';
+@import 'tailwindcss';
+@import '../styles/icon-fonts';
+
+.prose-s3panel {
+  @apply text-background-13/70 font-inter-tight text-tagline-2;
+}
+
+.prose-s3panel h2 {
+  @apply font-manrope text-background-13/90 mt-10 mb-3 text-[28px] leading-[1.1] font-medium first:mt-0;
+}
+
+.prose-s3panel h3 {
+  @apply font-manrope text-background-13/90 mt-8 mb-2 text-[22px] leading-[1.2] font-medium;
+}
+
+.prose-s3panel p {
+  @apply mb-4;
+}
+
+.prose-s3panel ul {
+  @apply my-4 list-inside list-disc space-y-2;
+}
+
+.prose-s3panel a {
+  @apply text-background-13 font-semibold underline underline-offset-4;
+}
+
+[data-ns-animate] {
+  opacity: 1;
+}
