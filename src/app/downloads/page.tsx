@@ -3,6 +3,7 @@ import { BadgeDefault } from '@/src/components/shared/ui/badge';
 import { LinkPrimary, LinkSecondary } from '@/src/components/shared/ui/button';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { siAndroid, siApple, siSafari } from 'simple-icons';
 
 const appStoreUrl = 'https://apps.apple.com/us/app/s3panel/id6772481838?uo=4';
 
@@ -38,7 +39,27 @@ export const metadata: Metadata = {
   },
 };
 
+type PlatformIcon = {
+  title: string;
+  path: string;
+  hex: string;
+  viewBox?: string;
+};
+
 type PlatformIconName = 'browser' | 'mac' | 'ios' | 'windows' | 'android';
+
+const platformIcons: Record<PlatformIconName, PlatformIcon> = {
+  browser: siSafari,
+  mac: siApple,
+  ios: siApple,
+  windows: {
+    title: 'Windows',
+    hex: '0078D4',
+    viewBox: '0 0 24 24',
+    path: 'M3 5.1 10.4 4v7H3V5.1Zm8.5-1.25L21 2.5V11h-9.5V3.85ZM3 12.2h7.4v7L3 18.1v-5.9Zm8.5 0H21v8.3l-9.5-1.35V12.2Z',
+  },
+  android: siAndroid,
+};
 
 type Platform = {
   name: string;
@@ -133,54 +154,17 @@ const jsonLd = {
   },
 };
 
-function PlatformIcon({ icon }: { icon: PlatformIconName }) {
-  const common = 'h-11 w-11';
-
-  if (icon === 'browser') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <rect x="7" y="9" width="30" height="25" rx="5" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M8 17h28" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="14" cy="13" r="1.5" fill="currentColor" />
-        <circle cx="20" cy="13" r="1.5" fill="currentColor" />
-      </svg>
-    );
-  }
-
-  if (icon === 'mac') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <rect x="8" y="7" width="28" height="22" rx="4" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M17 35h10M22 29v6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="22" cy="12" r="1.3" fill="currentColor" />
-      </svg>
-    );
-  }
-
-  if (icon === 'ios') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <rect x="13" y="6" width="18" height="32" rx="5" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M19 11h6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="22" cy="33" r="1.5" fill="currentColor" />
-      </svg>
-    );
-  }
-
-  if (icon === 'windows') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <path d="M9 12l11-1.5v10.75H9V12ZM24 10l11-1.5v12.75H24V10ZM9 24h11v9.5L9 32V24ZM24 24h11v11.5L24 34V24Z" fill="currentColor" />
-      </svg>
-    );
-  }
-
+function PlatformLogo({ icon }: { icon: PlatformIconName }) {
+  const brand = platformIcons[icon];
   return (
-    <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-      <path d="M14 18h16v13a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4V18Z" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M16 15l-3-5M28 15l3-5M13 24H9M35 24h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="18" cy="25" r="1.2" fill="currentColor" />
-      <circle cx="26" cy="25" r="1.2" fill="currentColor" />
+    <svg
+      className="h-11 w-11"
+      viewBox={brand.viewBox ?? '0 0 24 24'}
+      fill="currentColor"
+      aria-hidden
+      role="img"
+    >
+      <path d={brand.path} />
     </svg>
   );
 }
@@ -201,8 +185,11 @@ function PlatformCard({ platform }: { platform: Platform }) {
         </span>
       </div>
 
-      <span className="mt-11 inline-flex size-16 items-center justify-center rounded-xl bg-white/12">
-        <PlatformIcon icon={platform.icon} />
+      <span
+        className="mt-11 inline-flex size-16 items-center justify-center rounded-xl bg-white shadow-[0px_14px_35px_rgba(13,13,18,0.08)]"
+        style={{ color: `#${platformIcons[platform.icon].hex}` }}
+      >
+        <PlatformLogo icon={platform.icon} />
       </span>
 
       <h2 className="font-manrope mt-10 text-[34px] leading-[1.04] font-medium">
