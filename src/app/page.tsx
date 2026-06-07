@@ -6,14 +6,11 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import {
   siAkamai,
-  siAndroid,
-  siApple,
   siBackblaze,
   siCloudflare,
   siDigitalocean,
   siHetzner,
   siMinio,
-  siSafari,
   siScaleway,
   siWasabi,
 } from 'simple-icons';
@@ -62,14 +59,6 @@ export const metadata: Metadata = {
     images: ['/images/s3panel/explorer.png'],
   },
 };
-
-const platforms = [
-  { name: 'Web App', icon: siSafari, status: 'Available now', tag: 'Live', href: 'https://app.s3panel.com' },
-  { name: 'macOS', icon: siApple, status: 'TestFlight', tag: 'Beta', href: '/downloads' },
-  { name: 'Windows', icon: 'windows', status: 'Planned', tag: 'Soon', href: '/downloads' },
-  { name: 'iOS', icon: siApple, status: 'Planned', tag: 'Soon', href: '/downloads' },
-  { name: 'Android', icon: siAndroid, status: 'Planned', tag: 'Soon', href: '/downloads' },
-];
 
 const homeJsonLd = {
   '@context': 'https://schema.org',
@@ -132,56 +121,6 @@ function ProviderBadge({ provider }: { provider: (typeof providers)[number] }) {
   );
 }
 
-function PlatformMark({ icon }: { icon: string | { path: string } }) {
-  const common = 'h-11 w-11';
-  if (typeof icon !== 'string') {
-    return (
-      <svg className={common} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-        <path d={icon.path} />
-      </svg>
-    );
-  }
-  if (icon === 'browser') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <rect x="7" y="9" width="30" height="25" rx="5" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M8 17h28" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="14" cy="13" r="1.5" fill="currentColor" />
-        <circle cx="20" cy="13" r="1.5" fill="currentColor" />
-      </svg>
-    );
-  }
-  if (icon === 'mac') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <rect x="9" y="8" width="26" height="22" rx="4" stroke="currentColor" strokeWidth="2.5" />
-        <path d="M18 36h8M22 30v6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (icon === 'windows') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <path d="M9 12l11-1.5v10.75H9V12ZM24 10l11-1.5v12.75H24V10ZM9 24h11v9.5L9 32V24ZM24 24h11v11.5L24 34V24Z" fill="currentColor" />
-      </svg>
-    );
-  }
-  if (icon === 'ios') {
-    return (
-      <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-        <rect x="13" y="6" width="18" height="32" rx="5" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="22" cy="33" r="1.5" fill="currentColor" />
-      </svg>
-    );
-  }
-  return (
-    <svg className={common} viewBox="0 0 44 44" fill="none" aria-hidden>
-      <path d="M14 18h16v13a4 4 0 0 1-4 4h-8a4 4 0 0 1-4-4V18Z" stroke="currentColor" strokeWidth="2.5" />
-      <path d="M16 15l-3-5M28 15l3-5M13 24h-4M35 24h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 export default function Home() {
   return (
     <>
@@ -229,7 +168,7 @@ export default function Home() {
             <RevealAnimation delay={0.4}>
               <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <LinkPrimary href="https://app.s3panel.com/sign-up">Start 3-day trial</LinkPrimary>
-                <LinkSecondary href="#downloads">View downloads</LinkSecondary>
+                <LinkSecondary href="/downloads">View downloads</LinkSecondary>
               </div>
             </RevealAnimation>
           </div>
@@ -523,48 +462,36 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="downloads" className="py-13 md:py-24 lg:py-28 xl:py-36 2xl:py-44">
-        <div className="main-container space-y-10">
-          <div className="text-center">
-            <RevealAnimation delay={0.1}>
-              <BadgeDefault text="downloads" className="mb-4" />
-            </RevealAnimation>
-            <RevealAnimation delay={0.2}>
-              <h2 className="font-manrope text-manrope-heading-4 text-background-13/90 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
-                Web now. macOS prepared. More native apps next.
-              </h2>
-            </RevealAnimation>
-          </div>
-          <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {platforms.map((platform, index) => (
-              <RevealAnimation key={platform.name} delay={0.1 + index * 0.1}>
-                <a
-                  href={platform.href}
-                  className={`relative block rounded-[20px] p-6 text-center transition-transform duration-500 hover:-translate-y-1 ${
-                    index === 0 ? 'bg-background-4 text-white' : 'bg-background-9 text-background-13'
-                  }`}
-                >
-                  <span
-                    className={`absolute top-4 right-4 rounded-full px-2.5 py-1 font-ibm-plex-mono text-[10px] uppercase tracking-[1px] ${
-                      platform.tag === 'Soon'
-                        ? 'bg-amber-300 text-amber-950'
-                        : 'bg-white/14 text-current'
-                    }`}
-                  >
-                    {platform.tag}
-                  </span>
-                  <span className="mx-auto mb-10 inline-flex rounded-xl bg-white/12 p-3">
-                    <PlatformMark icon={platform.icon} />
-                  </span>
-                  <p className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px] opacity-60">
-                    {platform.status}
+      <section className="py-13 md:py-24 lg:py-28 xl:py-36 2xl:py-44">
+        <div className="main-container">
+          <div className="bg-background-4 rounded-[20px] p-8 text-white md:p-12 lg:p-16">
+            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <RevealAnimation delay={0.1}>
+                  <BadgeDefault text="downloads" className="mb-4 border-white/12 bg-white/8" />
+                </RevealAnimation>
+                <RevealAnimation delay={0.2}>
+                  <h2 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
+                    Download the live Apple apps or open S3Panel in the browser.
+                  </h2>
+                </RevealAnimation>
+                <RevealAnimation delay={0.3}>
+                  <p className="font-inter-tight text-tagline-2 mt-5 max-w-[760px] text-white/55">
+                    macOS, iPhone, and iPad are live on the App Store. Windows and Android are
+                    planned next, with the full platform status kept on the downloads page.
                   </p>
-                  <h3 className="font-manrope mt-8 text-[28px] leading-[1.05] font-medium">
-                    {platform.name}
-                  </h3>
-                </a>
+                </RevealAnimation>
+              </div>
+
+              <RevealAnimation delay={0.4}>
+                <div className="flex flex-col gap-3 lg:col-span-4 lg:items-end">
+                  <LinkPrimary href="/downloads">Open downloads</LinkPrimary>
+                  <LinkSecondary href="https://app.s3panel.com" target="_blank">
+                    Launch web app
+                  </LinkSecondary>
+                </div>
               </RevealAnimation>
-            ))}
+            </div>
           </div>
         </div>
       </section>
