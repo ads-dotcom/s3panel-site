@@ -27,6 +27,7 @@ export const footerData: FooterData = {
         { label: 'Fast Search', href: '/#search' },
         { label: 'Security', href: '/security' },
         { label: 'Pricing', href: '/pricing' },
+        { label: 'Changelog', href: '/changelog' },
       ],
     },
     {
@@ -57,6 +58,7 @@ export const footerData: FooterData = {
       { label: 'Terms of Service', href: '/terms' },
       { label: 'Support', href: '/support' },
       { label: 'FAQ', href: '/faq' },
+      { label: 'Changelog', href: '/changelog' },
     ],
   },
 };

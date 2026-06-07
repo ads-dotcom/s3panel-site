@@ -19,6 +19,7 @@ const navItems = [
   { label: 'Security', href: '/security' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Downloads', href: '/downloads' },
+  { label: 'Changelog', href: '/changelog' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;
