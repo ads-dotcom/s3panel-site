@@ -14,18 +14,88 @@ import {
   siScaleway,
   siWasabi,
 } from 'simple-icons';
+import type { SimpleIcon } from 'simple-icons';
 
-const providers = [
-  { name: 'AWS S3', mark: 'S3', color: '#ff9900' },
-  { name: 'Cloudflare R2', icon: siCloudflare, color: `#${siCloudflare.hex}` },
-  { name: 'Hetzner Object Storage', icon: siHetzner, color: `#${siHetzner.hex}` },
-  { name: 'MinIO', icon: siMinio, color: `#${siMinio.hex}` },
-  { name: 'Wasabi', icon: siWasabi, color: `#${siWasabi.hex}` },
-  { name: 'DigitalOcean Spaces', icon: siDigitalocean, color: `#${siDigitalocean.hex}` },
-  { name: 'Backblaze B2', icon: siBackblaze, color: `#${siBackblaze.hex}` },
-  { name: 'Scaleway', icon: siScaleway, color: `#${siScaleway.hex}` },
-  { name: 'Akamai Object Storage', icon: siAkamai, color: `#${siAkamai.hex}` },
-  { name: 'Custom S3 endpoint', mark: '{}', color: '#111827' },
+type Provider = {
+  name: string;
+  product: string;
+  label: string;
+  color: string;
+  icon?: SimpleIcon;
+  mark?: 's3' | 'custom';
+};
+
+const providers: Provider[] = [
+  {
+    name: 'Amazon S3',
+    product: 'AWS object storage',
+    label: 'Native S3 API',
+    mark: 's3',
+    color: '#ff9900',
+  },
+  {
+    name: 'Cloudflare R2',
+    product: 'Zero egress object storage',
+    label: 'R2 buckets',
+    icon: siCloudflare,
+    color: `#${siCloudflare.hex}`,
+  },
+  {
+    name: 'Hetzner',
+    product: 'Object Storage',
+    label: 'S3-compatible',
+    icon: siHetzner,
+    color: `#${siHetzner.hex}`,
+  },
+  {
+    name: 'MinIO',
+    product: 'Self-hosted object storage',
+    label: 'S3-compatible',
+    icon: siMinio,
+    color: `#${siMinio.hex}`,
+  },
+  {
+    name: 'Wasabi',
+    product: 'Hot cloud storage',
+    label: 'S3-compatible',
+    icon: siWasabi,
+    color: `#${siWasabi.hex}`,
+  },
+  {
+    name: 'DigitalOcean',
+    product: 'Spaces buckets',
+    label: 'S3-compatible',
+    icon: siDigitalocean,
+    color: `#${siDigitalocean.hex}`,
+  },
+  {
+    name: 'Backblaze',
+    product: 'B2 Cloud Storage',
+    label: 'S3-compatible',
+    icon: siBackblaze,
+    color: `#${siBackblaze.hex}`,
+  },
+  {
+    name: 'Scaleway',
+    product: 'Object Storage',
+    label: 'S3-compatible',
+    icon: siScaleway,
+    color: `#${siScaleway.hex}`,
+  },
+  {
+    name: 'Akamai',
+    product: 'Object Storage',
+    label: 'S3-compatible',
+    icon: siAkamai,
+    color: `#${siAkamai.hex}`,
+  },
+  {
+    name: 'Custom endpoint',
+    product: 'Any S3-compatible API',
+    label: 'Bring your URL',
+    mark: 'custom',
+    color: '#111827',
+  },
 ];
 
 export const metadata: Metadata = {
@@ -99,22 +169,99 @@ const homeJsonLd = {
   ],
 };
 
-function ProviderBadge({ provider }: { provider: (typeof providers)[number] }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span
-        className="flex size-11 shrink-0 items-center justify-center rounded-lg text-sm font-semibold text-white"
-        style={{ backgroundColor: provider.color }}
+function ProviderLogo({ provider }: { provider: Provider }) {
+  if (provider.icon) {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-12 w-12 fill-current"
+        style={{ color: provider.color }}
+        aria-hidden
       >
-        {'icon' in provider && provider.icon ? (
-          <svg viewBox="0 0 24 24" className="size-6 fill-current" aria-hidden>
-            <path d={provider.icon.path} />
-          </svg>
-        ) : (
-          provider.mark
-        )}
+        <path d={provider.icon.path} />
+      </svg>
+    );
+  }
+
+  if (provider.mark === 's3') {
+    return (
+      <svg className="h-14 w-14" viewBox="0 0 56 56" fill="none" aria-hidden>
+        <rect width="56" height="56" rx="14" fill="#FF9900" />
+        <path
+          d="M17 18.5c0-3.3 5-6 11-6s11 2.7 11 6v18.8c0 3.3-5 6-11 6s-11-2.7-11-6V18.5Z"
+          fill="white"
+          opacity=".22"
+        />
+        <path
+          d="M17 18.5c0 3.3 5 6 11 6s11-2.7 11-6M17 28c0 3.3 5 6 11 6s11-2.7 11-6"
+          stroke="white"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <text
+          x="28"
+          y="39"
+          fill="white"
+          textAnchor="middle"
+          fontFamily="Arial, sans-serif"
+          fontSize="15"
+          fontWeight="700"
+        >
+          S3
+        </text>
+      </svg>
+    );
+  }
+
+  return (
+    <span
+      className="flex h-14 w-14 items-center justify-center rounded-[14px] font-ibm-plex-mono text-[20px] font-semibold text-white"
+      style={{ backgroundColor: provider.color }}
+    >
+      {'{}'}
+    </span>
+  );
+}
+
+function ProviderCard({ provider }: { provider: Provider }) {
+  return (
+    <article className="group border-stroke-3/12 rounded-[20px] border bg-white p-5 text-left transition-all duration-500 hover:-translate-y-1 hover:shadow-[0px_24px_70px_rgba(3,7,18,0.16)]">
+      <div className="flex items-start justify-between gap-5">
+        <span className="flex size-17 shrink-0 items-center justify-center rounded-[18px] bg-background-8 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.05)]">
+          <ProviderLogo provider={provider} />
+        </span>
+        <span className="rounded-full bg-background-8 px-3 py-1 font-ibm-plex-mono text-[10px] uppercase tracking-[1px] text-background-13/45">
+          {provider.label}
+        </span>
+      </div>
+
+      <div className="mt-10">
+        <h3 className="font-manrope text-[28px] leading-[1.04] font-medium text-background-13/90">
+          {provider.name}
+        </h3>
+        <p className="font-inter-tight text-tagline-3 mt-2 text-background-13/55">
+          {provider.product}
+        </p>
+      </div>
+
+      <div className="mt-8 h-px bg-stroke-3/12" aria-hidden />
+      <div className="mt-4 flex items-center justify-between gap-4">
+        <span className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.2px] text-background-13/42">
+          ready
+        </span>
+        <span className="size-2 rounded-full transition-colors duration-500 group-hover:bg-emerald-400 bg-background-13/20" />
+      </div>
+    </article>
+  );
+}
+
+function ProviderStrip({ provider }: { provider: Provider }) {
+  return (
+    <div className="flex min-h-20 items-center gap-4 rounded-lg border border-white/10 bg-white/8 px-5 py-4 text-white">
+      <span className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-white">
+        <ProviderLogo provider={provider} />
       </span>
-      <span className="font-inter-tight text-tagline-3 text-background-13/80 text-left">
+      <span className="font-inter-tight text-tagline-3 text-white/78">
         {provider.name}
       </span>
     </div>
@@ -188,23 +335,76 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="integrations" className="py-12 sm:pt-20 md:py-20 lg:py-22 xl:py-25">
-        <div className="main-container space-y-8 text-center">
-          <RevealAnimation delay={0.1}>
-            <p className="font-ibm-plex-mono text-tagline-4 text-background-13/50 tracking-[1.6px] uppercase">
-              Connect the storage provider you already use
-            </p>
-          </RevealAnimation>
-          <RevealAnimation delay={0.2}>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+      <section
+        id="integrations"
+        className="scroll-mt-28 bg-background-4 py-16 md:scroll-mt-32 md:py-24 lg:py-30"
+      >
+        <div className="main-container">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="text-white lg:col-span-7">
+              <RevealAnimation delay={0.1}>
+                <BadgeDefault text="storage providers" className="mb-5 border-white/20 bg-white" />
+              </RevealAnimation>
+              <RevealAnimation delay={0.2}>
+                <h2 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
+                  Connect the storage stack{' '}
+                  <span className="font-instrument-serif text-white/50 italic">
+                    your team already trusts.
+                  </span>
+                </h2>
+              </RevealAnimation>
+              <RevealAnimation delay={0.3}>
+                <p className="font-inter-tight text-tagline-2 mt-6 max-w-[720px] text-white/58">
+                  S3Panel uses familiar S3-compatible connection details, so teams can manage AWS
+                  S3, Cloudflare R2, and compatible object storage providers without moving files
+                  into a new storage system.
+                </p>
+              </RevealAnimation>
+            </div>
+
+            <RevealAnimation delay={0.25}>
+              <div className="grid grid-cols-3 gap-3 lg:col-span-5">
+                {[
+                  ['10+', 'providers'],
+                  ['S3', 'compatible'],
+                  ['0', 'file migration'],
+                ].map(([value, label]) => (
+                  <div key={label} className="rounded-lg border border-white/10 bg-white/8 px-4 py-5 text-white">
+                    <p className="font-manrope text-[34px] leading-none font-medium">{value}</p>
+                    <p className="font-ibm-plex-mono text-tagline-4 mt-3 uppercase tracking-[1.1px] text-white/45">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </RevealAnimation>
+          </div>
+
+          <RevealAnimation delay={0.35}>
+            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {providers.map((provider) => (
-                <div
-                  key={provider.name}
-                  className="border-stroke-3/12 bg-background-9 rounded-lg border px-4 py-4"
-                >
-                  <ProviderBadge provider={provider} />
-                </div>
+                <ProviderCard key={provider.name} provider={provider} />
               ))}
+            </div>
+          </RevealAnimation>
+
+          <RevealAnimation delay={0.45}>
+            <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-5">
+              {providers.slice(0, 5).map((provider) => (
+                <ProviderStrip key={`strip-${provider.name}`} provider={provider} />
+              ))}
+            </div>
+          </RevealAnimation>
+
+          <RevealAnimation delay={0.5}>
+            <div className="mt-8 flex flex-col items-start justify-between gap-5 rounded-[18px] border border-white/10 bg-white/8 px-6 py-6 text-white md:flex-row md:items-center">
+              <p className="font-inter-tight text-tagline-2 max-w-[760px] text-white/62">
+                Use dedicated provider credentials, keep permissions narrow, and switch between
+                buckets from one focused S3Panel workspace.
+              </p>
+              <LinkSecondary href="/security" className="shrink-0">
+                Security model
+              </LinkSecondary>
             </div>
           </RevealAnimation>
         </div>
