@@ -15,7 +15,7 @@ const navLinkClass =
 
 const navItems = [
   { label: 'Features', href: '/features' },
-  { label: 'Search', href: '/#search' },
+  { label: 'Providers', href: '/providers' },
   { label: 'Security', href: '/security' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Downloads', href: '/downloads' },

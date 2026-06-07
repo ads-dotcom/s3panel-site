@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const DEFAULT_URL = 'https://s3panel.com/';
 export const DEFAULT_TITLE = 'S3Panel - Fast S3 and R2 bucket manager';
 export const DEFAULT_DESCRIPTION =
-  'S3Panel is a web and macOS workspace for browsing, searching, and safely managing large S3-compatible and Cloudflare R2 buckets.';
+  'S3Panel is a web, macOS, iPhone, and iPad workspace for browsing, searching, and safely managing large S3-compatible and Cloudflare R2 buckets.';
 export const DEFAULT_IMAGE_URL = 'https://s3panel.com/images/s3panel/explorer.png';
 
 const defaultMetadata: Metadata = {

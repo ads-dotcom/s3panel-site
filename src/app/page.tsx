@@ -4,6 +4,7 @@ import { LinkPrimary, LinkSecondary } from '@/src/components/shared/ui/button';
 import { featurePillars, homeFeatureHighlights } from '@/src/data/features';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   siAkamai,
   siBackblaze,
@@ -21,6 +22,7 @@ type Provider = {
   product: string;
   label: string;
   color: string;
+  href: string;
   icon?: SimpleIcon;
   mark?: 's3' | 'custom';
 };
@@ -32,6 +34,7 @@ const providers: Provider[] = [
     label: 'Native S3 API',
     mark: 's3',
     color: '#ff9900',
+    href: '/providers/amazon-s3',
   },
   {
     name: 'Cloudflare R2',
@@ -39,6 +42,7 @@ const providers: Provider[] = [
     label: 'R2 buckets',
     icon: siCloudflare,
     color: `#${siCloudflare.hex}`,
+    href: '/providers/cloudflare-r2',
   },
   {
     name: 'Hetzner',
@@ -46,6 +50,7 @@ const providers: Provider[] = [
     label: 'S3-compatible',
     icon: siHetzner,
     color: `#${siHetzner.hex}`,
+    href: '/providers/hetzner-object-storage',
   },
   {
     name: 'MinIO',
@@ -53,6 +58,7 @@ const providers: Provider[] = [
     label: 'S3-compatible',
     icon: siMinio,
     color: `#${siMinio.hex}`,
+    href: '/providers/minio',
   },
   {
     name: 'Wasabi',
@@ -60,6 +66,7 @@ const providers: Provider[] = [
     label: 'S3-compatible',
     icon: siWasabi,
     color: `#${siWasabi.hex}`,
+    href: '/providers/wasabi',
   },
   {
     name: 'DigitalOcean',
@@ -67,6 +74,7 @@ const providers: Provider[] = [
     label: 'S3-compatible',
     icon: siDigitalocean,
     color: `#${siDigitalocean.hex}`,
+    href: '/providers/digitalocean-spaces',
   },
   {
     name: 'Backblaze',
@@ -74,6 +82,7 @@ const providers: Provider[] = [
     label: 'S3-compatible',
     icon: siBackblaze,
     color: `#${siBackblaze.hex}`,
+    href: '/providers/backblaze-b2',
   },
   {
     name: 'Scaleway',
@@ -81,6 +90,7 @@ const providers: Provider[] = [
     label: 'S3-compatible',
     icon: siScaleway,
     color: `#${siScaleway.hex}`,
+    href: '/providers/scaleway-object-storage',
   },
   {
     name: 'Akamai',
@@ -88,6 +98,7 @@ const providers: Provider[] = [
     label: 'S3-compatible',
     icon: siAkamai,
     color: `#${siAkamai.hex}`,
+    href: '/providers/akamai-object-storage',
   },
   {
     name: 'Custom endpoint',
@@ -95,6 +106,7 @@ const providers: Provider[] = [
     label: 'Bring your URL',
     mark: 'custom',
     color: '#111827',
+    href: '/providers/custom-s3-endpoint',
   },
 ];
 
@@ -225,7 +237,10 @@ function ProviderLogo({ provider }: { provider: Provider }) {
 
 function ProviderCard({ provider }: { provider: Provider }) {
   return (
-    <article className="group border-stroke-3/12 rounded-[20px] border bg-white p-5 text-left transition-all duration-500 hover:-translate-y-1 hover:shadow-[0px_24px_70px_rgba(3,7,18,0.16)]">
+    <Link
+      href={provider.href}
+      className="group border-stroke-3/12 block rounded-[20px] border bg-white p-5 text-left transition-all duration-500 hover:-translate-y-1 hover:shadow-[0px_24px_70px_rgba(3,7,18,0.16)]"
+    >
       <div className="flex items-start justify-between gap-5">
         <span className="flex size-17 shrink-0 items-center justify-center rounded-[18px] bg-background-8 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.05)]">
           <ProviderLogo provider={provider} />
@@ -251,20 +266,23 @@ function ProviderCard({ provider }: { provider: Provider }) {
         </span>
         <span className="size-2 rounded-full transition-colors duration-500 group-hover:bg-emerald-400 bg-background-13/20" />
       </div>
-    </article>
+    </Link>
   );
 }
 
 function ProviderStrip({ provider }: { provider: Provider }) {
   return (
-    <div className="flex min-h-20 items-center gap-4 rounded-lg border border-white/10 bg-white/8 px-5 py-4 text-white">
+    <Link
+      href={provider.href}
+      className="flex min-h-20 items-center gap-4 rounded-lg border border-white/10 bg-white/8 px-5 py-4 text-white transition-colors duration-500 hover:bg-white/14"
+    >
       <span className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-white">
         <ProviderLogo provider={provider} />
       </span>
       <span className="font-inter-tight text-tagline-3 text-white/78">
         {provider.name}
       </span>
-    </div>
+    </Link>
   );
 }
 

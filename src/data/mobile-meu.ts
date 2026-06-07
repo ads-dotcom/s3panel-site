@@ -6,9 +6,11 @@ export const mobileMenuData: MobileMenuData[] = [
     title: 'Product',
     submenu: [
       { id: 'features', label: 'Features', href: '/features' },
+      { id: 'providers', label: 'Providers', href: '/providers' },
       { id: 'search', label: 'Fast Search', href: '/#search' },
       { id: 'security', label: 'Security', href: '/security' },
-      { id: 'integrations', label: 'Integrations', href: '/#integrations' },
+      { id: 'compare', label: 'Compare', href: '/compare' },
+      { id: 'faq', label: 'FAQ', href: '/faq' },
     ],
   },
   {

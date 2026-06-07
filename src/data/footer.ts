@@ -23,6 +23,7 @@ export const footerData: FooterData = {
       title: 'Product',
       links: [
         { label: 'Features', href: '/features' },
+        { label: 'Providers', href: '/providers' },
         { label: 'Fast Search', href: '/#search' },
         { label: 'Security', href: '/security' },
         { label: 'Pricing', href: '/pricing' },
@@ -33,6 +34,8 @@ export const footerData: FooterData = {
       links: [
         { label: 'About Us', href: '/about' },
         { label: 'Downloads', href: '/downloads' },
+        { label: 'Compare', href: '/compare' },
+        { label: 'FAQ', href: '/faq' },
         { label: 'Contact', href: '/contact' },
         { label: 'Support', href: '/support' },
         { label: 'Web App', href: 'https://app.s3panel.com' },
@@ -53,6 +56,7 @@ export const footerData: FooterData = {
       { label: 'Privacy Policy', href: '/privacy' },
       { label: 'Terms of Service', href: '/terms' },
       { label: 'Support', href: '/support' },
+      { label: 'FAQ', href: '/faq' },
     ],
   },
 };
