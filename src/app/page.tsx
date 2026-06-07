@@ -1,6 +1,8 @@
 import RevealAnimation from '@/src/components/animation/reveal-animation';
 import { BadgeDefault } from '@/src/components/shared/ui/badge';
 import { LinkPrimary, LinkSecondary } from '@/src/components/shared/ui/button';
+import { featurePillars, homeFeatureHighlights } from '@/src/data/features';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import {
   siAkamai,
@@ -29,95 +31,37 @@ const providers = [
   { name: 'Custom S3 endpoint', mark: '{}', color: '#111827' },
 ];
 
-const services = [
-  {
-    title: 'Object explorer',
-    text: 'Browse buckets, prefixes, folders, and files with a workspace built for large object storage.',
+export const metadata: Metadata = {
+  title: 'S3Panel - Fast S3 and R2 bucket manager',
+  description:
+    'Browse, search, share, and safely manage huge S3-compatible and Cloudflare R2 buckets from a focused web and native workspace.',
+  alternates: {
+    canonical: '/',
   },
-  {
-    title: 'Fast manifest search',
-    text: 'Build metadata indexes for object names, keys, sizes, timestamps, and folder totals.',
+  openGraph: {
+    title: 'S3Panel - Fast S3 and R2 bucket manager',
+    description:
+      'Control S3-compatible and Cloudflare R2 buckets with object browsing, manifest search, folder stats, secure sharing, and safe operations.',
+    url: 'https://s3panel.com/',
+    siteName: 'S3Panel',
+    type: 'website',
+    images: [
+      {
+        url: '/images/s3panel/explorer.png',
+        width: 1200,
+        height: 675,
+        alt: 'S3Panel object explorer for S3 and Cloudflare R2 buckets',
+      },
+    ],
   },
-  {
-    title: 'Safe file operations',
-    text: 'Upload, download, copy, move, rename, zip, unzip, and organize objects when permissions allow it.',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'S3Panel - Fast S3 and R2 bucket manager',
+    description:
+      'A focused workspace for browsing, searching, sharing, and safely managing S3 and R2 buckets.',
+    images: ['/images/s3panel/explorer.png'],
   },
-  {
-    title: 'Secure sharing',
-    text: 'Create temporary presigned links and keep buckets private while sharing selected files.',
-  },
-  {
-    title: 'Permissions and audit',
-    text: 'Check ACL support, handle read-only credentials safely, and review storage actions from audit logs.',
-  },
-  {
-    title: 'Native macOS workflow',
-    text: 'Browse, preview, search, upload, rename, copy, move, share, and inspect objects from the Mac app.',
-  },
-  {
-    title: 'R2 and custom endpoints',
-    text: 'Use Cloudflare R2, Hetzner, MinIO, Wasabi, Backblaze, and compatible S3 endpoints.',
-  },
-  {
-    title: 'Admin and billing',
-    text: 'Manage users, plans, lifetime access, subscriptions, events, and app review readiness.',
-  },
-  {
-    title: 'Duplicate and clone',
-    text: 'Create same-folder copies without opening a destination dialog, including non-colliding copy names.',
-  },
-  {
-    title: 'Copy to bucket',
-    text: 'Copy files or folders into another prefix or compatible bucket when the credential policy allows it.',
-  },
-  {
-    title: 'Move with folder picker',
-    text: 'Choose a destination bucket and folder before moving large objects or folder prefixes.',
-  },
-  {
-    title: 'Task feedback',
-    text: 'Show clear operation states for upload, copy, move, delete, indexing, and sharing actions.',
-  },
-  {
-    title: 'Share link manager',
-    text: 'Create, copy, review, and revoke temporary public links from the web or native Mac workflow.',
-  },
-  {
-    title: 'ZIP workflows',
-    text: 'Prepare selected files as ZIP downloads and support archive operations for customer storage.',
-  },
-  {
-    title: 'Object properties',
-    text: 'Inspect key, content type, size, ETag, storage class, encryption, and folder metadata.',
-  },
-  {
-    title: 'Bucket browser',
-    text: 'Switch buckets quickly and keep bucket-level navigation separate from object-level actions.',
-  },
-];
-
-const capabilityCards = [
-  {
-    label: 'Search',
-    title: 'Find files without crawling forever',
-    text: 'S3Panel stores object metadata in a manifest so repeated name and key searches are fast. Optional live content search scans selected files directly from customer storage.',
-  },
-  {
-    label: 'Stats',
-    title: 'Know folder sizes',
-    text: 'See folder object counts and total bytes even though S3 itself does not have real folders.',
-  },
-  {
-    label: 'Access',
-    title: 'Permission-aware behavior',
-    text: 'Read-only credentials can browse and search while write actions fail clearly and safely.',
-  },
-  {
-    label: 'Admin',
-    title: 'Users, roles, billing, events',
-    text: 'Admin pages manage customers, subscriptions, audit events, and operational visibility.',
-  },
-];
+};
 
 const platforms = [
   { name: 'Web App', icon: siSafari, status: 'Available now', tag: 'Live', href: 'https://app.s3panel.com' },
@@ -126,6 +70,45 @@ const platforms = [
   { name: 'iOS', icon: siApple, status: 'Planned', tag: 'Soon', href: '/downloads' },
   { name: 'Android', icon: siAndroid, status: 'Planned', tag: 'Soon', href: '/downloads' },
 ];
+
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://s3panel.com/#organization',
+      name: 'S3Panel',
+      url: 'https://s3panel.com/',
+      logo: 'https://s3panel.com/images/s3panel/app-icon.png',
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://s3panel.com/#website',
+      name: 'S3Panel',
+      url: 'https://s3panel.com/',
+      publisher: {
+        '@id': 'https://s3panel.com/#organization',
+      },
+    },
+    {
+      '@type': 'SoftwareApplication',
+      '@id': 'https://s3panel.com/#software',
+      name: 'S3Panel',
+      url: 'https://s3panel.com/',
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web, macOS, iOS',
+      description:
+        'S3Panel is a web and native app workspace for browsing, searching, sharing, and safely managing S3-compatible and Cloudflare R2 buckets.',
+      image: 'https://s3panel.com/images/s3panel/explorer.png',
+      offers: {
+        '@type': 'Offer',
+        price: '4.99',
+        priceCurrency: 'EUR',
+        url: 'https://s3panel.com/pricing/',
+      },
+    },
+  ],
+};
 
 function ProviderBadge({ provider }: { provider: (typeof providers)[number] }) {
   return (
@@ -202,6 +185,11 @@ function PlatformMark({ icon }: { icon: string | { path: string } }) {
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
+
       <section className="relative min-h-screen overflow-hidden pt-[120px] pb-18 md:pt-[165px] lg:pt-[205px]">
         <figure className="pointer-events-none absolute inset-0" aria-hidden>
           <Image
@@ -284,43 +272,59 @@ export default function Home() {
       </section>
 
       <section id="features" className="py-12 md:py-20 lg:py-28 xl:py-36 2xl:py-44">
-        <div className="main-container text-center">
-          <RevealAnimation delay={0.1}>
-            <BadgeDefault text="features" className="mb-4" />
-          </RevealAnimation>
-          <div className="space-y-3 text-center">
-            <RevealAnimation delay={0.2}>
-              <h2 className="font-manrope text-manrope-heading-4 text-background-13/90 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
-                One panel for{' '}
-                <span className="font-instrument-serif text-background-13/50 italic">
-                  serious bucket work.
-                </span>
-              </h2>
-            </RevealAnimation>
-            <RevealAnimation delay={0.3}>
-              <p className="font-inter-tight text-tagline-2 text-background-13/60">
-                S3Panel focuses on the actions storage teams repeat every day, with safeguards for
-                credentials, permissions, and customer data.
-              </p>
-            </RevealAnimation>
-          </div>
-
-          <div className="mt-14 grid grid-cols-1 gap-5 text-left md:grid-cols-2 xl:grid-cols-4">
-            {services.map((service, index) => (
-              <RevealAnimation key={service.title} delay={0.1 + index * 0.1}>
-                <article className="border-stroke-3/12 bg-background-9 min-h-[260px] rounded-[20px] border p-7">
-                  <span className="bg-background-14 text-background-7 mb-10 flex size-10 items-center justify-center rounded-full font-ibm-plex-mono text-tagline-4">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="font-manrope text-background-13/90 text-[26px] leading-[1.1] font-medium">
-                    {service.title}
-                  </h3>
-                  <p className="font-inter-tight text-tagline-3 text-background-13/60 mt-4">
-                    {service.text}
-                  </p>
-                </article>
+        <div className="main-container">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
+            <div className="lg:col-span-4">
+              <RevealAnimation delay={0.1}>
+                <BadgeDefault text="features" className="mb-4" />
               </RevealAnimation>
-            ))}
+              <RevealAnimation delay={0.2}>
+                <h2 className="font-manrope text-manrope-heading-4 text-background-13/90 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
+                  The core pieces of{' '}
+                  <span className="font-instrument-serif text-background-13/50 italic">
+                    daily S3 work.
+                  </span>
+                </h2>
+              </RevealAnimation>
+              <RevealAnimation delay={0.3}>
+                <p className="font-inter-tight text-tagline-2 text-background-13/60 mt-5">
+                  Start with the workflows that matter most: browse objects, search large buckets,
+                  operate safely, share private files, connect providers, and keep account controls
+                  clear.
+                </p>
+              </RevealAnimation>
+              <RevealAnimation delay={0.4}>
+                <div className="mt-8 inline-flex">
+                  <LinkPrimary href="/features">Explore all features</LinkPrimary>
+                </div>
+              </RevealAnimation>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-8">
+              {homeFeatureHighlights.map((feature, index) => (
+                <RevealAnimation key={feature.id} delay={0.1 + index * 0.08}>
+                  <a
+                    href={`/features/#${feature.id}`}
+                    className="border-stroke-3/12 bg-background-9 group block min-h-[240px] rounded-[18px] border p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0px_18px_55px_rgba(13,13,18,0.08)]"
+                  >
+                    <div className="flex items-start justify-between gap-5">
+                      <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45 uppercase tracking-[1.4px]">
+                        {feature.label}
+                      </span>
+                      <span className="bg-background-14 text-background-7 flex size-10 items-center justify-center rounded-full font-ibm-plex-mono text-tagline-4">
+                        {feature.number}
+                      </span>
+                    </div>
+                    <h3 className="font-manrope text-background-13/90 mt-12 text-[29px] leading-[1.05] font-medium">
+                      {feature.title}
+                    </h3>
+                    <p className="font-inter-tight text-tagline-3 text-background-13/60 mt-4">
+                      {feature.summary}
+                    </p>
+                  </a>
+                </RevealAnimation>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -414,7 +418,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {capabilityCards.map((card, index) => (
+            {featurePillars.slice(1, 5).map((card, index) => (
               <RevealAnimation key={card.title} delay={0.1 + index * 0.1}>
                 <article className="bg-background-8 rounded-[20px] p-8 md:p-10">
                   <span className="border-stroke-1/12 text-background-13/60 inline-flex rounded-[4px] border bg-white px-3 py-1 font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px]">
@@ -424,7 +428,7 @@ export default function Home() {
                     {card.title}
                   </h3>
                   <p className="font-inter-tight text-tagline-2 text-background-13/60 mt-4">
-                    {card.text}
+                    {card.detail}
                   </p>
                 </article>
               </RevealAnimation>

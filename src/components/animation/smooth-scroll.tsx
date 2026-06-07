@@ -1,6 +1,5 @@
 'use client';
-import { ReactLenis, useLenis } from 'lenis/react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { ReactNode, useEffect, useRef } from 'react';
 
 interface SmoothScrollingProps {
@@ -9,53 +8,44 @@ interface SmoothScrollingProps {
 
 const SmoothScrollProvider = ({ children }: Readonly<SmoothScrollingProps>) => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const previousPathnameRef = useRef<string>(pathname);
   const isInitialRender = useRef(true);
 
-  const lenis = useLenis();
-
   useEffect(() => {
-    // Only scroll to top if pathname actually changed (navigation), not on initial render or reload
     if (!isInitialRender.current && previousPathnameRef.current !== pathname) {
-      lenis?.scrollTo(0, { immediate: true });
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
-    // Update refs
     previousPathnameRef.current = pathname;
     isInitialRender.current = false;
-  }, [pathname, searchParams, lenis]);
+  }, [pathname]);
 
   useEffect(() => {
-    if (!lenis) {
-      return;
-    }
+    const handleClick = (event: Event) => {
+      const element = event.currentTarget as HTMLAnchorElement;
+      const href = element.getAttribute('href');
+      if (!href?.startsWith('#')) return;
+      const target = document.querySelector(href);
+      if (!target) return;
 
-    const handleClick = (ele: Element) => {
-      lenis.scrollTo(ele.getAttribute('href') ?? '', {
-        offset: -100,
-      });
+      event.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top, behavior: 'smooth' });
     };
 
     const elements = document.querySelectorAll('.lenis-scroll-to');
-    const clickHandler = (e: Event) => handleClick(e.target as Element);
-
     elements.forEach((ele) => {
-      ele.addEventListener('click', clickHandler);
+      ele.addEventListener('click', handleClick);
     });
 
     return () => {
       elements.forEach((ele) => {
-        ele.removeEventListener('click', clickHandler);
+        ele.removeEventListener('click', handleClick);
       });
     };
-  }, [lenis, pathname]);
+  }, [pathname]);
 
-  return (
-    <ReactLenis root options={{ duration: 1.1 }}>
-      {children}
-    </ReactLenis>
-  );
+  return <>{children}</>;
 };
 
 export default SmoothScrollProvider;

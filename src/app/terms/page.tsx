@@ -30,7 +30,7 @@ export default function TermsPage() {
       <h2>Subscriptions And Purchases</h2>
       <p>
         Paid features may be offered through the Mac App Store or direct web billing. App
-        Store purchases are governed by Apple's terms. Subscription access may renew
+        Store purchases are governed by Apple&apos;s terms. Subscription access may renew
         automatically until cancelled through the relevant billing provider.
       </p>
       <h2>Availability</h2>

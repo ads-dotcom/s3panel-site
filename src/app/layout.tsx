@@ -1,4 +1,4 @@
-import { ReactNode, Suspense } from 'react';
+import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import SmoothScrollProvider from '../components/animation/smooth-scroll';
 import Footer from '../components/shared/layout/footer/footer';
@@ -37,13 +37,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${fontVariables} antialiased`}>
-        <Suspense>
-          <SmoothScrollProvider>
-            <Navbar />
-            <main className="bg-background-7">{children}</main>
-            <Footer />
-          </SmoothScrollProvider>
-        </Suspense>
+        <SmoothScrollProvider>
+          <Navbar />
+          <main className="bg-background-7">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

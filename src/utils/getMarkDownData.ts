@@ -33,7 +33,6 @@ const getMarkDownData = <T extends MarkdownData = MarkdownData>(
         } as T;
       } catch (error) {
         if (process.env.NODE_ENV === 'development') {
-          // eslint-disable-next-line no-console
           console.error(`Error parsing markdown file: ${filePath}`, error);
         }
         return null;

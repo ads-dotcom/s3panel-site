@@ -1,14 +1,9 @@
 'use client';
 
-import { cn } from '@/src/utils/cn';
-import React, { ReactElement, Ref, cloneElement, useCallback, useRef } from 'react';
+import { ReactNode } from 'react';
 
 interface RevealAnimationProps {
-  children: ReactElement<{
-    className?: string;
-    ref?: Ref<HTMLElement>;
-    'data-ns-animate'?: boolean;
-  }>;
+  children: ReactNode;
   className?: string;
   delay?: number;
   duration?: number;
@@ -22,20 +17,6 @@ interface RevealAnimationProps {
   animationType?: 'from' | 'to';
 }
 
-const RevealAnimation = ({ children, className = '' }: RevealAnimationProps) => {
-  const elementRef = useRef<HTMLElement | null>(null);
-  const setRef = useCallback((el: HTMLElement | null) => {
-    elementRef.current = el;
-  }, []);
-
-  if (!children || !React.isValidElement(children)) {
-    return null;
-  }
-
-  return cloneElement(children, {
-    ref: setRef,
-    className: cn(children.props.className, className),
-  });
-};
+const RevealAnimation = ({ children }: RevealAnimationProps) => <>{children}</>;
 
 export default RevealAnimation;

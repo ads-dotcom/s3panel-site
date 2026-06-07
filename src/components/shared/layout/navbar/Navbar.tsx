@@ -14,7 +14,7 @@ const navLinkClass =
   'footer-link flex items-center justify-center gap-1.5 font-ibm-plex-mono text-tagline-3 font-normal leading-[21.7px] tracking-[1.68px] text-white/60 transition-colors duration-500 group-hover/item:text-white';
 
 const navItems = [
-  { label: 'Features', href: '/#features' },
+  { label: 'Features', href: '/features' },
   { label: 'Search', href: '/#search' },
   { label: 'Security', href: '/#security' },
   { label: 'Pricing', href: '/pricing' },
