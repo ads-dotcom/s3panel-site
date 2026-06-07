@@ -20,6 +20,7 @@ const navItems = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'Downloads', href: '/downloads' },
   { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ] as const;
 
 const Navbar = () => {

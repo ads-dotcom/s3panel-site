@@ -5,7 +5,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { siAndroid, siApple, siSafari } from 'simple-icons';
 
-const appStoreUrl = 'https://apps.apple.com/us/app/s3panel/id6772481838?uo=4';
+const macAppStoreUrl = 'https://apps.apple.com/de/app/s3panel/id6772481838?platform=mac';
+const iosAppStoreUrl = 'https://apps.apple.com/de/app/s3panel/id6772481838';
 
 export const metadata: Metadata = {
   title: 'Downloads',
@@ -92,7 +93,7 @@ const livePlatforms: Platform[] = [
     status: 'Live on App Store',
     description:
       'Install the native Mac app for a focused desktop workspace with App Store updates.',
-    href: appStoreUrl,
+    href: macAppStoreUrl,
     cta: 'Download for Mac',
     icon: 'mac',
     live: true,
@@ -103,7 +104,7 @@ const livePlatforms: Platform[] = [
     status: 'Live on App Store',
     description:
       'Use S3Panel on iPhone and iPad when you need to inspect buckets away from the desk.',
-    href: appStoreUrl,
+    href: iosAppStoreUrl,
     cta: 'Get iOS app',
     icon: 'ios',
     live: true,
@@ -144,7 +145,7 @@ const jsonLd = {
   operatingSystem: 'Web, macOS, iOS, iPadOS',
   description:
     'S3Panel is available on the web, macOS, iPhone, and iPad for S3-compatible and Cloudflare R2 bucket management.',
-  downloadUrl: appStoreUrl,
+  downloadUrl: macAppStoreUrl,
   installUrl: 'https://app.s3panel.com',
   offers: {
     '@type': 'Offer',
@@ -262,7 +263,7 @@ export default function DownloadsPage() {
               </RevealAnimation>
               <RevealAnimation delay={0.4}>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <LinkPrimary href={appStoreUrl} target="_blank">
+                  <LinkPrimary href={macAppStoreUrl} target="_blank">
                     Open App Store
                   </LinkPrimary>
                   <LinkSecondary href="https://app.s3panel.com" target="_blank">
@@ -350,7 +351,7 @@ export default function DownloadsPage() {
                 keeps installs, updates, and subscription handling inside Apple&apos;s system.
               </p>
               <div className="mt-8 inline-flex">
-                <LinkPrimary href={appStoreUrl} target="_blank">
+                <LinkPrimary href={macAppStoreUrl} target="_blank">
                   View App Store listing
                 </LinkPrimary>
               </div>
