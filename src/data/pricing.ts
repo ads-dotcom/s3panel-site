@@ -29,7 +29,7 @@ const proFeatureCategories = [
       'Permission-aware write actions',
       'Audit logs and admin events',
       'Web app access',
-      'Native macOS app access when released',
+      'Web, macOS, iOS, and iPadOS access',
     ],
     limit: 10,
     checks: 2,
