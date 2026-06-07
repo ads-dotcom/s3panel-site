@@ -395,6 +395,11 @@ export default function Home() {
                     manifest records. It does not host customer bucket contents.
                   </p>
                 </RevealAnimation>
+                <RevealAnimation delay={0.4}>
+                  <div className="mt-8 inline-flex">
+                    <LinkPrimary href="/security">Read security model</LinkPrimary>
+                  </div>
+                </RevealAnimation>
               </div>
               <div className="grid gap-3 lg:col-span-6">
                 {[

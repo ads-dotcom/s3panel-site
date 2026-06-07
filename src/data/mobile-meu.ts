@@ -7,7 +7,7 @@ export const mobileMenuData: MobileMenuData[] = [
     submenu: [
       { id: 'features', label: 'Features', href: '/features' },
       { id: 'search', label: 'Fast Search', href: '/#search' },
-      { id: 'security', label: 'Security', href: '/#security' },
+      { id: 'security', label: 'Security', href: '/security' },
       { id: 'integrations', label: 'Integrations', href: '/#integrations' },
     ],
   },

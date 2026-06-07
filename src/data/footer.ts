@@ -24,7 +24,7 @@ export const footerData: FooterData = {
       links: [
         { label: 'Features', href: '/features' },
         { label: 'Fast Search', href: '/#search' },
-        { label: 'Security', href: '/#security' },
+        { label: 'Security', href: '/security' },
         { label: 'Pricing', href: '/pricing' },
       ],
     },
