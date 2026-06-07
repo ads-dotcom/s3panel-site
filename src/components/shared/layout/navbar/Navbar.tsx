@@ -19,6 +19,7 @@ const navItems = [
   { label: 'Security', href: '/security' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Downloads', href: '/downloads' },
+  { label: 'About', href: '/about' },
 ] as const;
 
 const Navbar = () => {
@@ -59,7 +60,7 @@ const Navbar = () => {
             </Link>
 
             <div className="hidden items-center gap-10 lg:flex 2xl:gap-16">
-              <ul className="flex items-center gap-8">
+              <ul className="flex items-center gap-6 2xl:gap-8">
                 {navItems.map((item) => (
                   <li key={item.href} className="group/item relative">
                     <Link href={item.href} className={navLinkClass}>

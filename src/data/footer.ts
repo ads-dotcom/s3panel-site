@@ -31,6 +31,7 @@ export const footerData: FooterData = {
     {
       title: 'Support',
       links: [
+        { label: 'About Us', href: '/about' },
         { label: 'Downloads', href: '/downloads' },
         { label: 'Contact', href: '/contact' },
         { label: 'Support', href: '/support' },
