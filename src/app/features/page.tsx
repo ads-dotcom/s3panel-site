@@ -8,7 +8,7 @@ import Image from 'next/image';
 export const metadata: Metadata = {
   title: 'Features',
   description:
-    'Detailed S3Panel features for browsing, searching, transfers, quick upload links, file preview, metadata editing, Shortcuts, and safely managing S3-compatible and Cloudflare R2 buckets.',
+    'Detailed S3Panel features for S3/R2 browsing, manifest search, bucket policy, lifecycle rules, versioning, static website hosting, encryption, multipart transfers, quick upload links, metadata editing, and Shortcuts.',
   keywords: [
     'S3Panel features',
     'S3 bucket manager',
@@ -17,6 +17,12 @@ export const metadata: Metadata = {
     'S3 folder size',
     'presigned S3 links',
     'S3 transfer manager',
+    'S3 bucket policy editor',
+    'S3 lifecycle rules',
+    'S3 versioning manager',
+    'S3 static website hosting',
+    'S3 server side encryption',
+    'multipart S3 upload',
     'S3 metadata editor',
     'S3 file preview',
     'Apple Shortcuts S3',
@@ -28,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'S3Panel Features',
     description:
-      'Browse, search, transfer, preview, edit metadata, create quick share links, and safely manage S3-compatible and Cloudflare R2 buckets with S3Panel.',
+      'Browse, search, transfer, preview, edit metadata, manage bucket policy/lifecycle/encryption, create quick share links, and safely manage S3-compatible and Cloudflare R2 buckets with S3Panel.',
     url: 'https://s3panel.com/features/',
     siteName: 'S3Panel',
     type: 'website',
@@ -45,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'S3Panel Features',
     description:
-      'Object explorer, manifest search, transfer manager, quick upload links, file preview, metadata editor, Shortcuts, and audit-ready controls for S3 and R2.',
+      'Object explorer, manifest search, bucket admin, advanced transfer manager, quick upload links, metadata editor, Shortcuts, and audit-ready controls for S3 and R2.',
     images: ['/images/s3panel/explorer.png'],
   },
 };
@@ -56,7 +62,8 @@ const proofPoints = [
     'Browse, inspect, preview, upload, download, copy, move, rename, zip, unzip, and delete.',
   ],
   ['Search and stats', 'Use manifest metadata for object search, folder counts, and total sizes.'],
-  ['Transfers', 'Track uploads, downloads, quick links, metadata saves, and operation history.'],
+  ['Bucket admin', 'Manage policy, lifecycle, website hosting, encryption, ACL, and versioning.'],
+  ['Transfers', 'Track multipart uploads, schedules, retry context, pause/resume, and history.'],
 ] as const;
 
 const useCases = [
@@ -80,7 +87,7 @@ const jsonLd = {
   name: 'S3Panel Features',
   url: 'https://s3panel.com/features/',
   description:
-    'Detailed S3Panel features for browsing, searching, transfers, quick upload links, file preview, metadata editing, Shortcuts, and safely managing S3-compatible and Cloudflare R2 buckets.',
+    'Detailed S3Panel features for S3/R2 browsing, manifest search, bucket policy, lifecycle rules, versioning, static website hosting, encryption, multipart transfers, quick upload links, metadata editing, and Shortcuts.',
   mainEntity: {
     '@type': 'SoftwareApplication',
     name: 'S3Panel',

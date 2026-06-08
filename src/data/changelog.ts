@@ -459,6 +459,46 @@ export const changelogEntries: ChangelogEntry[] = [
     summary:
       'Added native Apple workflow entries for opening S3Panel, quick upload, share-link creation, explorer access, and release notes.',
   },
+  {
+    release: 58,
+    date: '2026-06-08',
+    title: 'Bucket Admin for advanced S3 settings',
+    platform: ['Web', 'iOS', 'macOS'],
+    summary:
+      'Added provider-aware screens for bucket policy JSON, lifecycle rules, static website hosting, default encryption, ACL presets, and versioning.',
+  },
+  {
+    release: 59,
+    date: '2026-06-08',
+    title: 'Advanced upload controls',
+    platform: ['Web', 'iOS', 'macOS'],
+    summary:
+      'Expanded uploads with automatic or multipart mode, part size, retry limit, scheduled start, bandwidth limit, server-side encryption, KMS key, and SHA-256 checksum options.',
+  },
+  {
+    release: 60,
+    date: '2026-06-08',
+    title: 'Pause, resume, cancel, and retry context',
+    platform: ['Web', 'iOS', 'macOS'],
+    summary:
+      'Improved the task center so running transfers can show retry state, accept cancel requests, and pause or resume between supported upload stages.',
+  },
+  {
+    release: 61,
+    date: '2026-06-08',
+    title: 'macOS menu bar Quick Upload',
+    platform: ['macOS'],
+    summary:
+      'Added a native Mac menu bar entry and Quick Upload window for choosing a connection and bucket, uploading files, and copying generated share links.',
+  },
+  {
+    release: 62,
+    date: '2026-06-08',
+    title: 'App Store review submissions for advanced workflows',
+    platform: ['iOS', 'macOS'],
+    summary:
+      'Submitted macOS 1.15 build 24 and iOS 1.1 build 25 with Bucket Admin, advanced transfers, menu bar Quick Upload, and expanded Shortcuts support.',
+  },
 ];
 
 export const latestChangelogEntry = changelogEntries[changelogEntries.length - 1];

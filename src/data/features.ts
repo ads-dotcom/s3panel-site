@@ -138,21 +138,45 @@ export const featurePillars = [
     ],
   },
   {
-    id: 'transfer-manager',
+    id: 'bucket-admin',
     number: '07',
-    label: 'Transfers',
-    title: 'Transfer Manager for upload and download work',
+    label: 'Bucket admin',
+    title: 'Bucket policy, lifecycle, website, encryption, ACL, and versioning controls',
     summary:
-      'Track upload, download, archive, share-link, and metadata tasks with visible progress, history, retry context, and completion states.',
+      'Configure advanced S3 bucket settings from the same workspace used for object browsing and search.',
     detail:
-      'Large object storage work needs more feedback than a spinning button. S3Panel now groups transfer and operation activity into a dedicated task center so teams can see what is running, what finished, and what needs attention across web, macOS, iPhone, and iPad workflows.',
+      'S3Panel adds dedicated bucket administration screens for teams that need more than upload and download. Where the connected provider supports the API, users can review or update bucket policy JSON, lifecycle expiration rules, static website hosting, default server-side encryption, ACL presets, and bucket versioning without leaving the S3/R2 workflow.',
+    image: '/images/s3panel/billing.png',
+    imageAlt: 'S3Panel bucket administration controls for policy, lifecycle, website, encryption, ACL, and versioning',
+    highlights: [
+      'Bucket policy JSON editor',
+      'Lifecycle expiration and multipart cleanup rules',
+      'Static website hosting configuration',
+      'Default encryption, ACL, and versioning controls',
+    ],
+    workflow: [
+      'Choose the connection and bucket that needs administration.',
+      'Open Bucket Admin and review provider-supported settings in one dialog.',
+      'Save policy, lifecycle, website, encryption, ACL, or versioning updates with permission-aware feedback.',
+    ],
+  },
+  {
+    id: 'transfer-manager',
+    number: '08',
+    label: 'Transfers',
+    title: 'Transfer Manager with scheduling, retry, pause, resume, and multipart options',
+    summary:
+      'Track uploads, downloads, archives, share links, and metadata tasks with progress, history, retry context, scheduling, bandwidth limits, and pause/resume controls.',
+    detail:
+      'Large object storage work needs more feedback than a spinning button. S3Panel groups transfer and operation activity into a dedicated task center, and advanced uploads can use automatic or multipart mode, part-size tuning, retry limits, scheduled starts, bandwidth limits, server-side encryption, and SHA-256 checksum options.',
     image: '/images/s3panel/folder-stats.png',
     imageAlt: 'S3Panel transfer manager and storage operation history',
     highlights: [
-      'Upload and download task states',
+      'Upload and download task states with pause/resume',
+      'Multipart upload, retry limit, and scheduled start options',
+      'Bandwidth limit, server-side encryption, and checksum settings',
       'ZIP, share-link, and metadata operation history',
-      'Clear completed task controls',
-      'Error visibility for failed storage actions',
+      'Error visibility and retry context for failed storage actions',
     ],
     workflow: [
       'Start an upload, download, ZIP, share-link, or metadata action.',
@@ -162,17 +186,18 @@ export const featurePillars = [
   },
   {
     id: 'quick-upload-links',
-    number: '08',
+    number: '09',
     label: 'Quick links',
-    title: 'Quick Upload and Get Link workflow',
+    title: 'Quick Upload and Get Link from the app or Mac menu bar',
     summary:
-      'Upload a file and create a temporary share link in the same flow, reducing the steps needed to send private bucket objects safely.',
+      'Upload a file and create a temporary share link in the same flow, including a native macOS menu bar Quick Upload entry.',
     detail:
-      'For support teams, agencies, and operators, sharing one file quickly is often the whole job. S3Panel connects upload and presigned-link creation so a user can add an object to the right bucket and copy a temporary link without turning the bucket public.',
+      'For support teams, agencies, and operators, sharing one file quickly is often the whole job. S3Panel connects upload and presigned-link creation so a user can add an object to the right bucket and copy a temporary link without turning the bucket public. On macOS, the menu bar Quick Upload window keeps that workflow close even when the main window is not in front.',
     image: '/images/s3panel/secure-download.png',
     imageAlt: 'S3Panel quick upload and temporary share link workflow',
     highlights: [
       'Upload with optional share-link creation',
+      'macOS menu bar Quick Upload window',
       'Temporary presigned URL generation',
       'Private bucket-first sharing',
       'Share history and revoke controls',
@@ -185,7 +210,7 @@ export const featurePillars = [
   },
   {
     id: 'file-preview',
-    number: '09',
+    number: '10',
     label: 'Preview',
     title: 'File Preview for common object types',
     summary:
@@ -208,7 +233,7 @@ export const featurePillars = [
   },
   {
     id: 'metadata-editor',
-    number: '10',
+    number: '11',
     label: 'Metadata',
     title: 'Object Metadata editor',
     summary:
@@ -231,19 +256,20 @@ export const featurePillars = [
   },
   {
     id: 'shortcuts-automation',
-    number: '11',
+    number: '12',
     label: 'Shortcuts',
     title: 'Shortcuts and App Intents for Apple workflows',
     summary:
-      'Expose S3Panel actions to Apple system surfaces so macOS, iPhone, and iPad users can start common storage workflows faster.',
+      'Expose S3Panel actions to Apple system surfaces so macOS, iPhone, and iPad users can start parameterized storage workflows faster.',
     detail:
-      'Native Apple users expect apps to fit the system. S3Panel now includes App Intents foundations for opening the explorer, starting quick upload workflows, creating share links, and checking release notes from macOS, iPhone, and iPad entry points.',
+      'Native Apple users expect apps to fit the system. S3Panel includes App Intents for opening the explorer, starting quick upload workflows, searching objects, creating share links, and checking release notes from macOS, iPhone, and iPad entry points. The upload, search, and share-link intents now accept parameters such as bucket, object key, and query.',
     image: '/images/s3panel/explorer.png',
     imageAlt: 'S3Panel explorer opened from Apple Shortcuts and native workflows',
     highlights: [
       'Open Explorer intent',
-      'Quick Upload workflow entry',
-      'Create Share Link workflow entry',
+      'Quick Upload workflow with bucket parameter',
+      'Search workflow with query and bucket parameters',
+      'Create Share Link workflow with bucket and object key parameters',
       'Open Changelog and release notes',
     ],
     workflow: [
