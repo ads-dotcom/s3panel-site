@@ -35,6 +35,14 @@ export default function AppStorePrivacyPage() {
         storage provider you connect unless you upload, download, copy, move, zip, unzip,
         or share them through the app.
       </p>
+      <h2>Trust And Security</h2>
+      <p>
+        The macOS app stores the native S3Panel session token in macOS Keychain where
+        supported. Saved S3/R2 connection secrets are encrypted in S3Panel backend
+        connection records and are not returned to the browser after save. Manifest records
+        are used for object search and folder statistics, not for hosting customer files.
+        Learn more in the <a href="/security/">S3Panel Security and Trust Center</a>.
+      </p>
       <h2>Contact</h2>
       <p>
         Privacy requests can be sent to{' '}

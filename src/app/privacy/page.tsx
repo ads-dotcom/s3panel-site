@@ -41,6 +41,12 @@ export default function PrivacyPage() {
         workflow and rotate credentials if they suspect exposure. The macOS app stores app
         sessions in the macOS Keychain where supported.
       </p>
+      <p>
+        S3Panel does not ask you to send secret keys to support. If a credential may have
+        been exposed, rotate it in your storage provider and delete the saved connection in
+        S3Panel. For more detail, see the{' '}
+        <a href="/security/">S3Panel Security and Trust Center</a>.
+      </p>
       <h2>Payments</h2>
       <p>
         Mac App Store purchases and subscriptions are processed by Apple. S3Panel receives
