@@ -65,9 +65,9 @@ const Footer: FC = () => {
                     </RevealAnimation>
                   </div>
 
-                  <div className="col-span-12 grid grid-cols-12 lg:col-span-8 lg:gap-8">
+                  <div className="col-span-12 grid grid-cols-12 gap-y-8 lg:col-span-8 lg:gap-8">
                     {linkGroups.map((group, idx) => (
-                      <div key={group.title} className="col-span-12 md:col-span-4">
+                      <div key={group.title} className="col-span-12 md:col-span-4 xl:col-span-3">
                         <RevealAnimation delay={0.2 + idx * 0.1}>
                           <div className="space-y-2 text-left lg:text-right">
                             <p className="text-tagline-2 font-semibold text-white/90">

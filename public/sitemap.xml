@@ -13,6 +13,12 @@
   <url><loc>https://s3panel.com/providers/scaleway-object-storage/</loc></url>
   <url><loc>https://s3panel.com/providers/akamai-object-storage/</loc></url>
   <url><loc>https://s3panel.com/providers/custom-s3-endpoint/</loc></url>
+  <url><loc>https://s3panel.com/cloudflare-r2-manager/</loc></url>
+  <url><loc>https://s3panel.com/s3-browser-for-mac/</loc></url>
+  <url><loc>https://s3panel.com/s3-client-macos/</loc></url>
+  <url><loc>https://s3panel.com/wasabi-s3-client/</loc></url>
+  <url><loc>https://s3panel.com/minio-browser/</loc></url>
+  <url><loc>https://s3panel.com/backblaze-b2-s3-client/</loc></url>
   <url><loc>https://s3panel.com/security/</loc></url>
   <url><loc>https://s3panel.com/pricing/</loc></url>
   <url><loc>https://s3panel.com/downloads/</loc></url>
@@ -22,6 +28,9 @@
   <url><loc>https://s3panel.com/compare/brows3/</loc></url>
   <url><loc>https://s3panel.com/compare/cloudmounter/</loc></url>
   <url><loc>https://s3panel.com/compare/transmit/</loc></url>
+  <url><loc>https://s3panel.com/compare/cyberduck-alternative/</loc></url>
+  <url><loc>https://s3panel.com/compare/transmit-alternative/</loc></url>
+  <url><loc>https://s3panel.com/compare/cloudmounter-alternative/</loc></url>
   <url><loc>https://s3panel.com/faq/</loc></url>
   <url><loc>https://s3panel.com/about/</loc></url>
   <url><loc>https://s3panel.com/privacy/</loc></url>

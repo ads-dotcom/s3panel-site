@@ -43,6 +43,25 @@ export const footerData: FooterData = {
       ],
     },
     {
+      title: 'Solutions',
+      links: [
+        { label: 'Cloudflare R2 Manager', href: '/cloudflare-r2-manager' },
+        { label: 'S3 Browser for Mac', href: '/s3-browser-for-mac' },
+        { label: 'S3 Client macOS', href: '/s3-client-macos' },
+        { label: 'Wasabi S3 Client', href: '/wasabi-s3-client' },
+        { label: 'MinIO Browser', href: '/minio-browser' },
+        { label: 'Backblaze B2 S3 Client', href: '/backblaze-b2-s3-client' },
+      ],
+    },
+    {
+      title: 'Alternatives',
+      links: [
+        { label: 'Cyberduck Alternative', href: '/compare/cyberduck-alternative' },
+        { label: 'Transmit Alternative', href: '/compare/transmit-alternative' },
+        { label: 'CloudMounter Alternative', href: '/compare/cloudmounter-alternative' },
+      ],
+    },
+    {
       title: 'Legal',
       links: [
         { label: 'Privacy Policy', href: '/privacy' },
