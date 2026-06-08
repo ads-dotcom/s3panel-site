@@ -8,7 +8,7 @@ import Image from 'next/image';
 export const metadata: Metadata = {
   title: 'Features',
   description:
-    'Detailed S3Panel features for browsing, searching, sharing, and safely managing S3-compatible and Cloudflare R2 buckets.',
+    'Detailed S3Panel features for browsing, searching, transfers, quick upload links, file preview, metadata editing, Shortcuts, and safely managing S3-compatible and Cloudflare R2 buckets.',
   keywords: [
     'S3Panel features',
     'S3 bucket manager',
@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     'S3 file search',
     'S3 folder size',
     'presigned S3 links',
+    'S3 transfer manager',
+    'S3 metadata editor',
+    'S3 file preview',
+    'Apple Shortcuts S3',
     'S3-compatible storage',
   ],
   alternates: {
@@ -24,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'S3Panel Features',
     description:
-      'Browse, search, share, and safely manage S3-compatible and Cloudflare R2 buckets with S3Panel.',
+      'Browse, search, transfer, preview, edit metadata, create quick share links, and safely manage S3-compatible and Cloudflare R2 buckets with S3Panel.',
     url: 'https://s3panel.com/features/',
     siteName: 'S3Panel',
     type: 'website',
@@ -41,15 +45,18 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'S3Panel Features',
     description:
-      'Object explorer, manifest search, folder stats, secure sharing, provider coverage, and audit-ready controls for S3 and R2.',
+      'Object explorer, manifest search, transfer manager, quick upload links, file preview, metadata editor, Shortcuts, and audit-ready controls for S3 and R2.',
     images: ['/images/s3panel/explorer.png'],
   },
 };
 
 const proofPoints = [
-  ['Object work', 'Browse, inspect, upload, download, copy, move, rename, zip, unzip, and delete.'],
+  [
+    'Object work',
+    'Browse, inspect, preview, upload, download, copy, move, rename, zip, unzip, and delete.',
+  ],
   ['Search and stats', 'Use manifest metadata for object search, folder counts, and total sizes.'],
-  ['Security model', 'Customer objects stay in the storage provider; S3Panel manages metadata and actions.'],
+  ['Transfers', 'Track uploads, downloads, quick links, metadata saves, and operation history.'],
 ] as const;
 
 const useCases = [
@@ -73,7 +80,7 @@ const jsonLd = {
   name: 'S3Panel Features',
   url: 'https://s3panel.com/features/',
   description:
-    'Detailed S3Panel features for browsing, searching, sharing, and safely managing S3-compatible and Cloudflare R2 buckets.',
+    'Detailed S3Panel features for browsing, searching, transfers, quick upload links, file preview, metadata editing, Shortcuts, and safely managing S3-compatible and Cloudflare R2 buckets.',
   mainEntity: {
     '@type': 'SoftwareApplication',
     name: 'S3Panel',
@@ -110,7 +117,7 @@ export default function FeaturesPage() {
       />
 
       <section className="relative overflow-hidden pt-[140px] pb-18 md:pt-[190px] md:pb-26">
-        <div className="absolute inset-x-0 top-0 h-[620px] bg-background-4" aria-hidden />
+        <div className="bg-background-4 absolute inset-x-0 top-0 h-[620px]" aria-hidden />
         <div className="main-container relative">
           <div className="grid grid-cols-1 items-end gap-12 lg:grid-cols-12">
             <div className="text-white lg:col-span-6">
@@ -128,13 +135,15 @@ export default function FeaturesPage() {
               <RevealAnimation delay={0.3}>
                 <p className="font-inter-tight text-tagline-1 mt-6 max-w-[720px] text-white/60">
                   S3Panel combines a focused object explorer, manifest-backed search, safe file
-                  operations, temporary sharing, provider coverage, and audit-ready account controls
-                  in one workspace.
+                  operations, transfer history, quick upload links, preview, metadata editing,
+                  provider coverage, and audit-ready account controls in one workspace.
                 </p>
               </RevealAnimation>
               <RevealAnimation delay={0.4}>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <LinkPrimary href="https://app.s3panel.com/sign-up">Start 3-day trial</LinkPrimary>
+                  <LinkPrimary href="https://app.s3panel.com/sign-up">
+                    Start 3-day trial
+                  </LinkPrimary>
                   <LinkSecondary href="/pricing">View pricing</LinkSecondary>
                 </div>
               </RevealAnimation>
@@ -162,10 +171,12 @@ export default function FeaturesPage() {
             <div className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-3">
               {proofPoints.map(([title, text]) => (
                 <div key={title} className="rounded-lg bg-white px-5 py-5">
-                  <p className="font-ibm-plex-mono text-tagline-4 text-background-13/45 uppercase tracking-[1.4px]">
+                  <p className="font-ibm-plex-mono text-tagline-4 text-background-13/45 tracking-[1.4px] uppercase">
                     {title}
                   </p>
-                  <p className="font-inter-tight text-tagline-3 text-background-13/70 mt-4">{text}</p>
+                  <p className="font-inter-tight text-tagline-3 text-background-13/70 mt-4">
+                    {text}
+                  </p>
                 </div>
               ))}
             </div>
@@ -183,10 +194,10 @@ export default function FeaturesPage() {
                   className="border-stroke-3/12 bg-background-9 group block rounded-[18px] border p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0px_18px_55px_rgba(13,13,18,0.08)]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45 uppercase tracking-[1.4px]">
+                    <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45 tracking-[1.4px] uppercase">
                       {feature.label}
                     </span>
-                    <span className="bg-background-14 text-background-7 flex size-10 items-center justify-center rounded-full font-ibm-plex-mono text-tagline-4">
+                    <span className="bg-background-14 text-background-7 font-ibm-plex-mono text-tagline-4 flex size-10 items-center justify-center rounded-full">
                       {feature.number}
                     </span>
                   </div>
@@ -209,7 +220,7 @@ export default function FeaturesPage() {
             <article
               id={feature.id}
               key={feature.id}
-              className="scroll-mt-32 border-t border-stroke-3/12 pt-12 md:pt-16"
+              className="border-stroke-3/12 scroll-mt-32 border-t pt-12 md:pt-16"
             >
               <div
                 className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-12 ${
@@ -219,16 +230,16 @@ export default function FeaturesPage() {
                 <div className="lg:col-span-5">
                   <RevealAnimation delay={0.1}>
                     <div className="flex items-center gap-3">
-                      <span className="bg-background-14 text-background-7 flex size-10 items-center justify-center rounded-full font-ibm-plex-mono text-tagline-4">
+                      <span className="bg-background-14 text-background-7 font-ibm-plex-mono text-tagline-4 flex size-10 items-center justify-center rounded-full">
                         {feature.number}
                       </span>
-                      <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45 uppercase tracking-[1.4px]">
+                      <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45 tracking-[1.4px] uppercase">
                         {feature.label}
                       </span>
                     </div>
                   </RevealAnimation>
                   <RevealAnimation delay={0.2}>
-                    <h2 className="font-manrope text-manrope-heading-4 text-background-13/90 mt-8 md:text-manrope-heading-3 font-medium">
+                    <h2 className="font-manrope text-manrope-heading-4 text-background-13/90 md:text-manrope-heading-3 mt-8 font-medium">
                       {feature.title}
                     </h2>
                   </RevealAnimation>
@@ -281,7 +292,7 @@ export default function FeaturesPage() {
                     </h3>
                     <div className="mt-6 grid gap-3">
                       {feature.workflow.map((item, stepIndex) => (
-                        <div key={item} className="flex gap-4 rounded-lg bg-background-8 px-5 py-4">
+                        <div key={item} className="bg-background-8 flex gap-4 rounded-lg px-5 py-4">
                           <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45">
                             {String(stepIndex + 1).padStart(2, '0')}
                           </span>
@@ -320,7 +331,9 @@ export default function FeaturesPage() {
                       <h3 className="font-manrope text-[24px] leading-[1.1] font-medium">
                         {item.title}
                       </h3>
-                      <p className="font-inter-tight text-tagline-3 mt-3 text-white/62">{item.text}</p>
+                      <p className="font-inter-tight text-tagline-3 mt-3 text-white/62">
+                        {item.text}
+                      </p>
                     </div>
                   </RevealAnimation>
                 ))}

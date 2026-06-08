@@ -110,17 +110,24 @@ const providers: Provider[] = [
   },
 ];
 
+const operationFeatureIds = new Set<string>([
+  'transfer-manager',
+  'quick-upload-links',
+  'file-preview',
+  'metadata-editor',
+]);
+
 export const metadata: Metadata = {
   title: 'S3Panel - Fast S3 and R2 bucket manager',
   description:
-    'Browse, search, share, and safely manage huge S3-compatible and Cloudflare R2 buckets from a focused web and native workspace.',
+    'Browse, search, preview, transfer, edit metadata, create quick share links, and safely manage huge S3-compatible and Cloudflare R2 buckets from a focused web and native workspace.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'S3Panel - Fast S3 and R2 bucket manager',
     description:
-      'Control S3-compatible and Cloudflare R2 buckets with object browsing, manifest search, folder stats, secure sharing, and safe operations.',
+      'Control S3-compatible and Cloudflare R2 buckets with object browsing, manifest search, transfer history, quick upload links, metadata editing, secure sharing, and safe operations.',
     url: 'https://s3panel.com/',
     siteName: 'S3Panel',
     type: 'website',
@@ -137,7 +144,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'S3Panel - Fast S3 and R2 bucket manager',
     description:
-      'A focused workspace for browsing, searching, sharing, and safely managing S3 and R2 buckets.',
+      'A focused workspace for browsing, searching, transfers, quick links, metadata editing, preview, and safely managing S3 and R2 buckets.',
     images: ['/images/s3panel/explorer.png'],
   },
 };
@@ -169,7 +176,8 @@ const homeJsonLd = {
       applicationCategory: 'DeveloperApplication',
       operatingSystem: 'Web, macOS, iOS',
       description:
-        'S3Panel is a web and native app workspace for browsing, searching, sharing, and safely managing S3-compatible and Cloudflare R2 buckets.',
+        'S3Panel is a web and native app workspace for browsing, searching, transfers, quick upload links, preview, metadata editing, and safely managing S3-compatible and Cloudflare R2 buckets.',
+      featureList: featurePillars.map((feature) => feature.title),
       image: 'https://s3panel.com/images/s3panel/explorer.png',
       offers: {
         '@type': 'Offer',
@@ -227,7 +235,7 @@ function ProviderLogo({ provider }: { provider: Provider }) {
 
   return (
     <span
-      className="flex h-14 w-14 items-center justify-center rounded-[14px] font-ibm-plex-mono text-[20px] font-semibold text-white"
+      className="font-ibm-plex-mono flex h-14 w-14 items-center justify-center rounded-[14px] text-[20px] font-semibold text-white"
       style={{ backgroundColor: provider.color }}
     >
       {'{}'}
@@ -242,29 +250,29 @@ function ProviderCard({ provider }: { provider: Provider }) {
       className="group border-stroke-3/12 block rounded-[20px] border bg-white p-5 text-left transition-all duration-500 hover:-translate-y-1 hover:shadow-[0px_24px_70px_rgba(3,7,18,0.16)]"
     >
       <div className="flex items-start justify-between gap-5">
-        <span className="flex size-17 shrink-0 items-center justify-center rounded-[18px] bg-background-8 shadow-[inset_0_0_0_1px_rgba(15,23,42,0.05)]">
+        <span className="bg-background-8 flex size-17 shrink-0 items-center justify-center rounded-[18px] shadow-[inset_0_0_0_1px_rgba(15,23,42,0.05)]">
           <ProviderLogo provider={provider} />
         </span>
-        <span className="rounded-full bg-background-8 px-3 py-1 font-ibm-plex-mono text-[10px] uppercase tracking-[1px] text-background-13/45">
+        <span className="bg-background-8 font-ibm-plex-mono text-background-13/45 rounded-full px-3 py-1 text-[10px] tracking-[1px] uppercase">
           {provider.label}
         </span>
       </div>
 
       <div className="mt-10">
-        <h3 className="font-manrope text-[28px] leading-[1.04] font-medium text-background-13/90">
+        <h3 className="font-manrope text-background-13/90 text-[28px] leading-[1.04] font-medium">
           {provider.name}
         </h3>
-        <p className="font-inter-tight text-tagline-3 mt-2 text-background-13/55">
+        <p className="font-inter-tight text-tagline-3 text-background-13/55 mt-2">
           {provider.product}
         </p>
       </div>
 
-      <div className="mt-8 h-px bg-stroke-3/12" aria-hidden />
+      <div className="bg-stroke-3/12 mt-8 h-px" aria-hidden />
       <div className="mt-4 flex items-center justify-between gap-4">
-        <span className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.2px] text-background-13/42">
+        <span className="font-ibm-plex-mono text-tagline-4 text-background-13/42 tracking-[1.2px] uppercase">
           ready
         </span>
-        <span className="size-2 rounded-full transition-colors duration-500 group-hover:bg-emerald-400 bg-background-13/20" />
+        <span className="bg-background-13/20 size-2 rounded-full transition-colors duration-500 group-hover:bg-emerald-400" />
       </div>
     </Link>
   );
@@ -279,9 +287,7 @@ function ProviderStrip({ provider }: { provider: Provider }) {
       <span className="flex size-12 shrink-0 items-center justify-center rounded-[14px] bg-white">
         <ProviderLogo provider={provider} />
       </span>
-      <span className="font-inter-tight text-tagline-3 text-white/78">
-        {provider.name}
-      </span>
+      <span className="font-inter-tight text-tagline-3 text-white/78">{provider.name}</span>
     </Link>
   );
 }
@@ -305,7 +311,7 @@ export default function Home() {
             className="size-full object-cover object-top opacity-18"
           />
         </figure>
-        <div className="absolute inset-0 bg-background-7/82" aria-hidden />
+        <div className="bg-background-7/82 absolute inset-0" aria-hidden />
 
         <div className="main-container relative space-y-14">
           <div className="mx-auto max-w-[980px] space-y-5 text-center">
@@ -314,9 +320,9 @@ export default function Home() {
             </RevealAnimation>
 
             <RevealAnimation delay={0.2}>
-              <h1 className="text-manrope-heading-3 text-background-13/90 font-medium md:text-manrope-heading-2 lg:text-manrope-heading-1">
+              <h1 className="text-manrope-heading-3 text-background-13/90 md:text-manrope-heading-2 lg:text-manrope-heading-1 font-medium">
                 Control huge S3 and R2 buckets{' '}
-                <span className="text-is-heading-3 text-background-13/80 font-normal italic md:text-is-heading-2 lg:text-is-heading-1">
+                <span className="text-is-heading-3 text-background-13/80 md:text-is-heading-2 lg:text-is-heading-1 font-normal italic">
                   without losing your workflow
                 </span>
               </h1>
@@ -325,8 +331,8 @@ export default function Home() {
             <RevealAnimation delay={0.3}>
               <p className="text-tagline-1 text-background-13/60 mx-auto max-w-[720px] font-normal">
                 S3Panel gives developers, agencies, and operations teams a modern web and macOS
-                workspace for browsing, searching, sharing, and managing large object storage
-                buckets.
+                workspace for browsing, searching, transfer tracking, quick upload links, preview,
+                metadata editing, and managing large object storage buckets.
               </p>
             </RevealAnimation>
 
@@ -355,7 +361,7 @@ export default function Home() {
 
       <section
         id="integrations"
-        className="scroll-mt-28 bg-background-4 py-16 md:scroll-mt-32 md:py-24 lg:py-30"
+        className="bg-background-4 scroll-mt-28 py-16 md:scroll-mt-32 md:py-24 lg:py-30"
       >
         <div className="main-container">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
@@ -387,9 +393,12 @@ export default function Home() {
                   ['S3', 'compatible'],
                   ['0', 'file migration'],
                 ].map(([value, label]) => (
-                  <div key={label} className="rounded-lg border border-white/10 bg-white/8 px-4 py-5 text-white">
+                  <div
+                    key={label}
+                    className="rounded-lg border border-white/10 bg-white/8 px-4 py-5 text-white"
+                  >
                     <p className="font-manrope text-[34px] leading-none font-medium">{value}</p>
-                    <p className="font-ibm-plex-mono text-tagline-4 mt-3 uppercase tracking-[1.1px] text-white/45">
+                    <p className="font-ibm-plex-mono text-tagline-4 mt-3 tracking-[1.1px] text-white/45 uppercase">
                       {label}
                     </p>
                   </div>
@@ -446,8 +455,8 @@ export default function Home() {
               <RevealAnimation delay={0.3}>
                 <p className="font-inter-tight text-tagline-2 text-background-13/60 mt-5">
                   Start with the workflows that matter most: browse objects, search large buckets,
-                  operate safely, share private files, connect providers, and keep account controls
-                  clear.
+                  operate safely, track transfers, preview files, edit metadata, share private
+                  files, connect providers, and keep account controls clear.
                 </p>
               </RevealAnimation>
               <RevealAnimation delay={0.4}>
@@ -465,10 +474,10 @@ export default function Home() {
                     className="border-stroke-3/12 bg-background-9 group block min-h-[240px] rounded-[18px] border p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0px_18px_55px_rgba(13,13,18,0.08)]"
                   >
                     <div className="flex items-start justify-between gap-5">
-                      <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45 uppercase tracking-[1.4px]">
+                      <span className="font-ibm-plex-mono text-tagline-4 text-background-13/45 tracking-[1.4px] uppercase">
                         {feature.label}
                       </span>
-                      <span className="bg-background-14 text-background-7 flex size-10 items-center justify-center rounded-full font-ibm-plex-mono text-tagline-4">
+                      <span className="bg-background-14 text-background-7 font-ibm-plex-mono text-tagline-4 flex size-10 items-center justify-center rounded-full">
                         {feature.number}
                       </span>
                     </div>
@@ -544,12 +553,12 @@ export default function Home() {
                   <figure className="overflow-hidden rounded-[18px] bg-white p-2 shadow-[0px_20px_70px_rgba(0,0,0,0.08)]">
                     <Image
                       src="/images/s3panel/secure-download.png"
-                    alt="Secure presigned downloads"
-                    width={2048}
-                    height={1152}
-                    loading="eager"
-                    className="rounded-xl"
-                  />
+                      alt="Secure presigned downloads"
+                      width={2048}
+                      height={1152}
+                      loading="eager"
+                      className="rounded-xl"
+                    />
                   </figure>
                 </RevealAnimation>
               </div>
@@ -575,21 +584,23 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {featurePillars.slice(1, 5).map((card, index) => (
-              <RevealAnimation key={card.title} delay={0.1 + index * 0.1}>
-                <article className="bg-background-8 rounded-[20px] p-8 md:p-10">
-                  <span className="border-stroke-1/12 text-background-13/60 inline-flex rounded-[4px] border bg-white px-3 py-1 font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px]">
-                    {card.label}
-                  </span>
-                  <h3 className="font-manrope text-background-13/90 mt-8 text-[34px] leading-[1.02] font-medium">
-                    {card.title}
-                  </h3>
-                  <p className="font-inter-tight text-tagline-2 text-background-13/60 mt-4">
-                    {card.detail}
-                  </p>
-                </article>
-              </RevealAnimation>
-            ))}
+            {featurePillars
+              .filter((card) => operationFeatureIds.has(card.id))
+              .map((card, index) => (
+                <RevealAnimation key={card.title} delay={0.1 + index * 0.1}>
+                  <article className="bg-background-8 rounded-[20px] p-8 md:p-10">
+                    <span className="border-stroke-1/12 text-background-13/60 font-ibm-plex-mono text-tagline-4 inline-flex rounded-[4px] border bg-white px-3 py-1 tracking-[1.4px] uppercase">
+                      {card.label}
+                    </span>
+                    <h3 className="font-manrope text-background-13/90 mt-8 text-[34px] leading-[1.02] font-medium">
+                      {card.title}
+                    </h3>
+                    <p className="font-inter-tight text-tagline-2 text-background-13/60 mt-4">
+                      {card.detail}
+                    </p>
+                  </article>
+                </RevealAnimation>
+              ))}
           </div>
         </div>
       </section>
@@ -603,7 +614,7 @@ export default function Home() {
                   <BadgeDefault text="security" className="mb-4" />
                 </RevealAnimation>
                 <RevealAnimation delay={0.2}>
-                  <h2 className="font-manrope text-manrope-heading-4 text-white/90 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium">
+                  <h2 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 font-medium text-white/90">
                     Your buckets stay with your provider.
                   </h2>
                 </RevealAnimation>
@@ -663,7 +674,7 @@ export default function Home() {
                     <article
                       key={name}
                       className={`rounded-lg p-7 ${
-                        index === 1 ? 'bg-background-4 text-white' : 'bg-white text-background-13'
+                        index === 1 ? 'bg-background-4 text-white' : 'text-background-13 bg-white'
                       }`}
                     >
                       <p className="font-inter-tight text-tagline-2 opacity-70">{name}</p>

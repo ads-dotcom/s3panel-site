@@ -2,7 +2,7 @@ export const seoFaq = [
   {
     question: 'What is S3Panel?',
     answer:
-      'S3Panel is a web and native app workspace for browsing, searching, sharing, and safely managing S3-compatible and Cloudflare R2 buckets.',
+      'S3Panel is a web and native app workspace for browsing, searching, transfers, preview, metadata editing, quick share links, and safely managing S3-compatible and Cloudflare R2 buckets.',
   },
   {
     question: 'Which storage providers does S3Panel support?',
@@ -20,6 +20,16 @@ export const seoFaq = [
       'Yes. S3Panel is designed around manifest-backed search and folder stats so teams can find objects and understand large buckets more quickly.',
   },
   {
+    question: 'Does S3Panel include a transfer manager?',
+    answer:
+      'Yes. S3Panel includes task and transfer history for uploads, downloads, archive work, share-link creation, metadata saves, and related storage operations.',
+  },
+  {
+    question: 'Can S3Panel edit S3 object metadata?',
+    answer:
+      'Yes. S3Panel supports editable object properties such as content type, cache-control, and custom metadata when the connected storage credentials allow metadata updates.',
+  },
+  {
     question: 'Is S3Panel available on Mac and iPhone?',
     answer:
       'Yes. S3Panel is available on the web, macOS, iPhone, and iPad. Windows and Android are planned next.',
@@ -32,6 +42,6 @@ export const seoFaq = [
   {
     question: 'How is S3Panel different from general file transfer clients?',
     answer:
-      'S3Panel is focused on S3-compatible object storage workflows: bucket browsing, object search, folder stats, temporary sharing, and permission-aware file operations.',
+      'S3Panel is focused on S3-compatible object storage workflows: bucket browsing, object search, folder stats, transfer history, file preview, temporary sharing, metadata editing, and permission-aware file operations.',
   },
 ];

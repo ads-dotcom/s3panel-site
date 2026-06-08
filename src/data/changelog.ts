@@ -220,8 +220,7 @@ export const changelogEntries: ChangelogEntry[] = [
     date: '2026-05-24',
     title: 'Search and sharing preview',
     platform: ['macOS'],
-    summary:
-      'Improved macOS search fallback, file sharing preview, and direct link handling.',
+    summary: 'Improved macOS search fallback, file sharing preview, and direct link handling.',
   },
   {
     release: 28,
@@ -292,16 +291,14 @@ export const changelogEntries: ChangelogEntry[] = [
     date: '2026-05-26',
     title: 'Folder ZIP downloads',
     platform: ['Web', 'macOS'],
-    summary:
-      'Fixed folder ZIP download behavior for prefix-based object storage folders.',
+    summary: 'Fixed folder ZIP download behavior for prefix-based object storage folders.',
   },
   {
     release: 37,
     date: '2026-05-27',
     title: 'macOS root navigation',
     platform: ['macOS'],
-    summary:
-      'Fixed root navigation and search result handling inside the native macOS explorer.',
+    summary: 'Fixed root navigation and search result handling inside the native macOS explorer.',
   },
   {
     release: 38,
@@ -324,8 +321,7 @@ export const changelogEntries: ChangelogEntry[] = [
     date: '2026-05-27',
     title: 'Explorer action parity',
     platform: ['Web', 'macOS'],
-    summary:
-      'Aligned visible explorer actions across the native and web experiences.',
+    summary: 'Aligned visible explorer actions across the native and web experiences.',
   },
   {
     release: 41,
@@ -422,6 +418,46 @@ export const changelogEntries: ChangelogEntry[] = [
     platform: ['Web', 'iOS', 'macOS'],
     summary:
       'Submitted macOS 1.14 build 23 and iOS 1.1 build 14 with the latest storage management, search, and share-link fixes.',
+  },
+  {
+    release: 53,
+    date: '2026-06-08',
+    title: 'Transfer Manager and task history',
+    platform: ['Web', 'iOS', 'macOS'],
+    summary:
+      'Added visible transfer and operation tracking for uploads, downloads, archives, share links, metadata saves, completion states, and recent task history.',
+  },
+  {
+    release: 54,
+    date: '2026-06-08',
+    title: 'Quick Upload with temporary share links',
+    platform: ['Web', 'iOS', 'macOS'],
+    summary:
+      'Connected upload and presigned-link creation so users can add an object and generate a private temporary download link from one workflow.',
+  },
+  {
+    release: 55,
+    date: '2026-06-08',
+    title: 'Object preview workflow refresh',
+    platform: ['Web', 'iOS', 'macOS'],
+    summary:
+      'Kept preview close to the explorer so users can verify selected files before download, rename, copy, metadata editing, or secure sharing.',
+  },
+  {
+    release: 56,
+    date: '2026-06-08',
+    title: 'Object metadata editor',
+    platform: ['Web', 'iOS', 'macOS'],
+    summary:
+      'Added editable content type, cache-control, and custom metadata controls for supported S3-compatible object update workflows.',
+  },
+  {
+    release: 57,
+    date: '2026-06-08',
+    title: 'Apple Shortcuts and App Intents foundation',
+    platform: ['iOS', 'macOS'],
+    summary:
+      'Added native Apple workflow entries for opening S3Panel, quick upload, share-link creation, explorer access, and release notes.',
   },
 ];
 

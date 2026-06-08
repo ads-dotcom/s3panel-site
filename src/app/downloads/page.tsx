@@ -116,8 +116,7 @@ const plannedPlatforms: Platform[] = [
     name: 'Windows',
     label: 'Desktop',
     status: 'Coming soon',
-    description:
-      'A Windows build is planned after the live web, macOS, and iOS releases settle.',
+    description: 'A Windows build is planned after the live web, macOS, and iOS releases settle.',
     cta: 'Planned',
     icon: 'windows',
     live: false,
@@ -174,11 +173,11 @@ function PlatformCard({ platform }: { platform: Platform }) {
   const content = (
     <>
       <div className="flex items-start justify-between gap-5">
-        <span className="font-ibm-plex-mono text-tagline-4 uppercase tracking-[1.4px] opacity-55">
+        <span className="font-ibm-plex-mono text-tagline-4 tracking-[1.4px] uppercase opacity-55">
           {platform.label}
         </span>
         <span
-          className={`rounded-full px-2.5 py-1 font-ibm-plex-mono text-[10px] uppercase tracking-[1px] ${
+          className={`font-ibm-plex-mono rounded-full px-2.5 py-1 text-[10px] tracking-[1px] uppercase ${
             platform.live ? 'bg-emerald-300 text-emerald-950' : 'bg-amber-300 text-amber-950'
           }`}
         >
@@ -193,14 +192,14 @@ function PlatformCard({ platform }: { platform: Platform }) {
         <PlatformLogo icon={platform.icon} />
       </span>
 
-      <h2 className="font-manrope mt-10 text-[34px] leading-[1.04] font-medium">
-        {platform.name}
-      </h2>
+      <h2 className="font-manrope mt-10 text-[34px] leading-[1.04] font-medium">{platform.name}</h2>
       <p className="font-inter-tight text-tagline-3 mt-4 opacity-65">{platform.description}</p>
 
       <span
-        className={`mt-8 inline-flex h-11 items-center justify-center rounded-[4px] px-5 font-ibm-plex-mono text-tagline-3 ${
-          platform.live ? 'bg-background-7 text-background-14' : 'bg-background-13/8 text-background-13/45'
+        className={`font-ibm-plex-mono text-tagline-3 mt-8 inline-flex h-11 items-center justify-center rounded-[4px] px-5 ${
+          platform.live
+            ? 'bg-background-7 text-background-14'
+            : 'bg-background-13/8 text-background-13/45'
         }`}
       >
         {platform.cta}
@@ -240,7 +239,7 @@ export default function DownloadsPage() {
       />
 
       <section className="relative overflow-hidden pt-[140px] pb-16 md:pt-[190px] md:pb-24">
-        <div className="absolute inset-x-0 top-0 h-[720px] bg-background-4" aria-hidden />
+        <div className="bg-background-4 absolute inset-x-0 top-0 h-[720px]" aria-hidden />
         <div className="main-container relative">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
             <div className="text-white lg:col-span-6">
@@ -258,7 +257,9 @@ export default function DownloadsPage() {
               <RevealAnimation delay={0.3}>
                 <p className="font-inter-tight text-tagline-1 mt-6 max-w-[720px] text-white/60">
                   The web app, macOS app, and iOS/iPadOS app are live now. Windows and Android are
-                  planned next, so the download page stays clear about what users can install today.
+                  planned next. Live Apple and web versions share the same S3Panel direction:
+                  transfer tracking, quick upload links, preview, metadata editing, and secure
+                  storage operations.
                 </p>
               </RevealAnimation>
               <RevealAnimation delay={0.4}>
@@ -300,7 +301,7 @@ export default function DownloadsPage() {
                   rel="noopener noreferrer"
                   className="rounded-lg bg-white px-5 py-5 transition-transform duration-500 hover:-translate-y-1"
                 >
-                  <p className="font-ibm-plex-mono text-tagline-4 text-background-13/45 uppercase tracking-[1.4px]">
+                  <p className="font-ibm-plex-mono text-tagline-4 text-background-13/45 tracking-[1.4px] uppercase">
                     {platform.status}
                   </p>
                   <p className="font-inter-tight text-tagline-3 text-background-13/70 mt-4">
@@ -323,8 +324,9 @@ export default function DownloadsPage() {
               </h2>
             </div>
             <p className="font-inter-tight text-tagline-2 text-background-13/60 max-w-[520px]">
-              App Store updates are handled by Apple. The browser version remains the fastest way
-              to start without installing anything.
+              App Store updates are handled by Apple. The browser version remains the fastest way to
+              try the newest transfer, preview, sharing, and metadata workflows without installing
+              anything.
             </p>
           </div>
 
@@ -348,7 +350,8 @@ export default function DownloadsPage() {
               </h2>
               <p className="font-inter-tight text-tagline-2 mt-5 text-white/55">
                 The App Store page is the right destination for Mac, iPhone, and iPad users. It
-                keeps installs, updates, and subscription handling inside Apple&apos;s system.
+                keeps installs, updates, subscription handling, and native Apple workflow entry
+                points inside Apple&apos;s system.
               </p>
               <div className="mt-8 inline-flex">
                 <LinkPrimary href={macAppStoreUrl} target="_blank">
@@ -360,12 +363,18 @@ export default function DownloadsPage() {
             <div className="grid grid-cols-1 gap-4 lg:col-span-7">
               {[
                 ['Web App', 'Best for immediate access from any modern desktop browser.'],
-                ['macOS', 'Best for Mac users who want a native desktop entry point.'],
-                ['iPhone and iPad', 'Best for checking buckets and files while away from the desk.'],
+                [
+                  'macOS',
+                  'Best for Mac users who want a native desktop entry point with transfer history and quick links.',
+                ],
+                [
+                  'iPhone and iPad',
+                  'Best for checking buckets, previews, metadata, and share links while away from the desk.',
+                ],
               ].map(([title, text], index) => (
                 <RevealAnimation key={title} delay={0.1 + index * 0.1}>
                   <div className="rounded-lg bg-white px-6 py-6">
-                    <p className="font-ibm-plex-mono text-tagline-4 text-background-13/45 uppercase tracking-[1.4px]">
+                    <p className="font-ibm-plex-mono text-tagline-4 text-background-13/45 tracking-[1.4px] uppercase">
                       {title}
                     </p>
                     <p className="font-inter-tight text-tagline-2 text-background-13/70 mt-4">
