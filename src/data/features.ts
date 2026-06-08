@@ -128,11 +128,13 @@ export const featurePillars = [
     highlights: [
       'Customer bucket contents stay with the provider',
       'Encrypted connection metadata',
+      'Optional Mac app lock with Touch ID or Mac password',
       'Audit events for storage actions',
       'Account deletion and billing controls',
     ],
     workflow: [
       'Create dedicated storage credentials with only the permissions S3Panel needs.',
+      'Enable app lock on Mac when local workstations need an extra privacy boundary.',
       'Use audit records to understand what changed and when.',
       'Delete S3Panel account data without deleting customer-owned bucket objects.',
     ],
@@ -255,14 +257,38 @@ export const featurePillars = [
     ],
   },
   {
-    id: 'shortcuts-automation',
+    id: 'folder-sync',
     number: '12',
+    label: 'Sync',
+    title: 'Folder Sync Planner for local-to-bucket uploads',
+    summary:
+      'Scan a local folder, preserve relative paths, save schedule and Wi-Fi-only planning metadata, then manually upload selected files to S3/R2.',
+    detail:
+      'S3Panel adds a safer first step toward sync: local folder scanning and upload-only planning. Users can choose a folder, review generated object keys, select the files that should be uploaded, and start the job explicitly. The workflow avoids automatic deletes, remote-to-local writes, and unattended overwrites while still making recurring local-to-bucket work easier to organize.',
+    image: '/images/s3panel/folder-stats.png',
+    imageAlt: 'S3Panel Folder Sync Planner for local-to-S3 bucket uploads',
+    highlights: [
+      'Local folder scan with relative object paths',
+      'Upload-only sync jobs for web, iPhone, iPad, and Mac workflows',
+      'Manual confirmation before any object upload',
+      'Schedule and Wi-Fi-only markers for future background sync decisions',
+      'Large-file guidance back to advanced multipart upload',
+    ],
+    workflow: [
+      'Choose a local folder and target bucket.',
+      'Review the remote prefix and object keys before upload.',
+      'Upload selected files manually and track the job in Task Center or native transfer history.',
+    ],
+  },
+  {
+    id: 'shortcuts-automation',
+    number: '13',
     label: 'Shortcuts',
     title: 'Shortcuts and App Intents for Apple workflows',
     summary:
       'Expose S3Panel actions to Apple system surfaces so macOS, iPhone, and iPad users can start parameterized storage workflows faster.',
     detail:
-      'Native Apple users expect apps to fit the system. S3Panel includes App Intents for opening the explorer, starting quick upload workflows, searching objects, creating share links, and checking release notes from macOS, iPhone, and iPad entry points. The upload, search, and share-link intents now accept parameters such as bucket, object key, and query.',
+      'Native Apple users expect apps to fit the system. S3Panel includes App Intents for opening the explorer, starting quick upload workflows, searching objects, creating share links, checking the transfer queue, opening Folder Sync Planner, checking an object key, and reading release notes from macOS, iPhone, and iPad entry points. Upload, search, share-link, sync, and object-check intents accept useful parameters such as bucket, prefix, object key, and query.',
     image: '/images/s3panel/explorer.png',
     imageAlt: 'S3Panel explorer opened from Apple Shortcuts and native workflows',
     highlights: [
@@ -270,11 +296,12 @@ export const featurePillars = [
       'Quick Upload workflow with bucket parameter',
       'Search workflow with query and bucket parameters',
       'Create Share Link workflow with bucket and object key parameters',
+      'Open Transfer Queue, Folder Sync Planner, and Object Check intents',
       'Open Changelog and release notes',
     ],
     workflow: [
       'Use Apple system shortcuts to open the right S3Panel workflow.',
-      'Jump into explorer, quick upload, share-link, or changelog views.',
+      'Jump into explorer, quick upload, folder sync, object check, transfer queue, share-link, or changelog views.',
       'Keep native Mac and iOS actions aligned with the web product direction.',
     ],
   },
