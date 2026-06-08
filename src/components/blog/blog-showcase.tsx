@@ -16,18 +16,18 @@ const BlogShowcase: FC = () => {
             <BadgeDefault text="Blog" />
           </RevealAnimation>
           <RevealAnimation delay={0.2}>
-            <h2 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 text-background-13/90 font-medium max-md:leading-[1.1]">
-              Stay ahead{' '}
+            <h1 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 text-background-13/90 font-medium max-md:leading-[1.1]">
+              Practical S3 and R2{' '}
               <span className="font-instrument-serif text-background-13/30 italic">
-                with AI insights
+                solution guides
               </span>
-            </h2>
+            </h1>
           </RevealAnimation>
           <RevealAnimation delay={0.3}>
             <p className="font-inter-tight text-tagline-2 text-background-13/60">
-              Our team brings together deep expertise in AI, design, and technology to build
+              Clear guides for Cloudflare R2, S3 buckets, secure links, large-bucket search,
               <br className="hidden md:block" />
-              tools that empower your creativity and productivity.
+              metadata, MinIO, Wasabi, Backblaze B2, and Mac object storage workflows.
             </p>
           </RevealAnimation>
         </div>

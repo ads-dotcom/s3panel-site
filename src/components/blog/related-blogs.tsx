@@ -33,7 +33,7 @@ const RelatedBlogs: FC<RelatedBlogsProps> = ({ posts, currentSlug, relatedSlugs,
           </RevealAnimation>
           <RevealAnimation delay={0.2}>
             <p className="font-inter-tight text-tagline-2 text-background-13/60">
-              More insights on AI, design, and productivity.
+              Continue with practical S3Panel guides for object storage teams.
             </p>
           </RevealAnimation>
         </div>

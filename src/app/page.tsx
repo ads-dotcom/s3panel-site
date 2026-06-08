@@ -1,7 +1,10 @@
 import RevealAnimation from '@/src/components/animation/reveal-animation';
+import Blog from '@/src/components/home/blog';
 import { BadgeDefault } from '@/src/components/shared/ui/badge';
 import { LinkPrimary, LinkSecondary } from '@/src/components/shared/ui/button';
 import { featurePillars, homeFeatureHighlights } from '@/src/data/features';
+import type { BlogPost } from '@/src/interface';
+import getMarkDownData from '@/src/utils/getMarkDownData';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -293,6 +296,10 @@ function ProviderStrip({ provider }: { provider: Provider }) {
 }
 
 export default function Home() {
+  const homeGuides = getMarkDownData<BlogPost>('src/data/blog', true, 'publishDate').filter(
+    (post) => post.showHomepage,
+  );
+
   return (
     <>
       <script
@@ -695,6 +702,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Blog posts={homeGuides} />
 
       <section className="py-13 md:py-24 lg:py-28 xl:py-36 2xl:py-44">
         <div className="main-container">

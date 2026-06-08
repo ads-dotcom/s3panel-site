@@ -8,6 +8,13 @@ interface MarkdownData {
   [key: string]: unknown;
 }
 
+const getDataDirectory = (folder: string) => {
+  const normalizedFolder = folder
+    .replace(/^src[\\/]+data[\\/]?/, '')
+    .replace(/^data[\\/]?/, '');
+  return path.join(process.cwd(), 'src', 'data', normalizedFolder);
+};
+
 const getMarkDownData = <T extends MarkdownData = MarkdownData>(
   folder: string,
   reversedSort?: boolean,
@@ -16,7 +23,7 @@ const getMarkDownData = <T extends MarkdownData = MarkdownData>(
   if (!sortBy) {
     sortBy = 'title';
   }
-  const dir = path.join(process.cwd(), folder);
+  const dir = getDataDirectory(folder);
   const files = fs.readdirSync(dir);
   const markdownPosts = files.filter((file) => file.endsWith('.md'));
 

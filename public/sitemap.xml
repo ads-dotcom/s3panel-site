@@ -23,6 +23,17 @@
   <url><loc>https://s3panel.com/pricing/</loc></url>
   <url><loc>https://s3panel.com/downloads/</loc></url>
   <url><loc>https://s3panel.com/changelog/</loc></url>
+  <url><loc>https://s3panel.com/blog/</loc></url>
+  <url><loc>https://s3panel.com/blog/how-to-manage-cloudflare-r2-buckets-on-mac/</loc></url>
+  <url><loc>https://s3panel.com/blog/create-secure-temporary-s3-download-links/</loc></url>
+  <url><loc>https://s3panel.com/blog/search-large-s3-buckets-faster/</loc></url>
+  <url><loc>https://s3panel.com/blog/s3-vs-r2-for-media-storage/</loc></url>
+  <url><loc>https://s3panel.com/blog/best-s3-clients-for-macos/</loc></url>
+  <url><loc>https://s3panel.com/blog/use-presigned-urls-safely/</loc></url>
+  <url><loc>https://s3panel.com/blog/s3-bucket-metadata-cache-control-guide/</loc></url>
+  <url><loc>https://s3panel.com/blog/minio-browser-local-s3-workflows/</loc></url>
+  <url><loc>https://s3panel.com/blog/wasabi-s3-client-cost-control/</loc></url>
+  <url><loc>https://s3panel.com/blog/backblaze-b2-s3-compatible-workflows/</loc></url>
   <url><loc>https://s3panel.com/compare/</loc></url>
   <url><loc>https://s3panel.com/compare/cyberduck/</loc></url>
   <url><loc>https://s3panel.com/compare/brows3/</loc></url>

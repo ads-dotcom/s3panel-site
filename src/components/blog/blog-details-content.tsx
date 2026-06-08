@@ -35,23 +35,24 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
       <div className="main-container">
         <div className="flex flex-col gap-8 pb-8 md:flex-row">
           <RevealAnimation delay={0.1} direction="left">
-            <figure className="h-[400px] w-full overflow-hidden rounded-lg md:h-[750px]">
+            <figure className="relative h-[400px] w-full overflow-hidden rounded-lg md:h-[750px]">
               <Image
                 src={heroFirst}
                 alt={title || 'Blog'}
-                width={800}
-                height={750}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="size-full object-cover"
               />
             </figure>
           </RevealAnimation>
           <RevealAnimation delay={0.1} direction="right">
-            <figure className="h-[400px] w-full overflow-hidden rounded-lg md:h-[750px]">
+            <figure className="relative h-[400px] w-full overflow-hidden rounded-lg md:h-[750px]">
               <Image
                 src={heroSecond}
                 alt={title || 'Blog'}
-                width={800}
-                height={750}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="size-full object-cover"
               />
             </figure>
@@ -61,7 +62,7 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
         <div className="mx-auto max-w-[1050px]">
           <div className="space-y-4" data-opai-animate>
             <RevealAnimation delay={0.2}>
-              <h2 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 text-background-13/90 mt-8 font-medium max-md:leading-[1.1]">
+              <h1 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 text-background-13/90 mt-8 font-medium max-md:leading-[1.1]">
                 {titleItalic ? (
                   <>
                     {title?.replace?.(titleItalic, '')?.trim() ?? title}{' '}
@@ -72,7 +73,7 @@ const BlogDetailsContent: FC<BlogDetailsContentProps> = ({ blog }) => {
                 ) : (
                   title
                 )}
-              </h2>
+              </h1>
             </RevealAnimation>
             <RevealAnimation delay={0.2}>
               <div className="flex items-center gap-3">

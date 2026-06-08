@@ -17,23 +17,23 @@ const Blog: FC<BlogProps> = ({ posts = [] }) => {
         {/* Content Section */}
         <div className="space-y-4 text-center max-md:pb-4">
           <RevealAnimation delay={0.1}>
-            <BadgeDefault text="Blog" />
+            <BadgeDefault text="Guides" />
           </RevealAnimation>
 
           <RevealAnimation delay={0.2}>
             <h2 className="font-manrope text-manrope-heading-4 md:text-manrope-heading-3 lg:text-manrope-heading-2 text-background-13/90 font-medium max-md:leading-[1.1]">
-              Stay ahead{' '}
+              Learn the workflows behind{' '}
               <span className="font-instrument-serif text-background-13/30 italic">
-                with AI insights
+                safer bucket operations
               </span>
             </h2>
           </RevealAnimation>
 
           <RevealAnimation delay={0.3}>
             <p className="font-inter-tight text-tagline-2 text-background-13/60">
-              Our team brings together deep expertise in AI, design, and technology to build
+              Short solution guides for R2, S3 search, temporary links, metadata,
               <br className="hidden md:block" />
-              tools that empower your creativity and productivity.
+              and choosing the right Mac object storage workflow.
             </p>
           </RevealAnimation>
         </div>
@@ -60,7 +60,7 @@ const Blog: FC<BlogProps> = ({ posts = [] }) => {
         {/* Button */}
         <RevealAnimation delay={0.1}>
           <div className="flex justify-center max-md:mt-3">
-            <LinkPrimary href="/blog">Explore our resource</LinkPrimary>
+            <LinkPrimary href="/blog">Read all guides</LinkPrimary>
           </div>
         </RevealAnimation>
       </div>
